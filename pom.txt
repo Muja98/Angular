@@ -1,0 +1,4 @@
+npm install bootstrap --save
+npm install -D json-server json-server-auth
+json-server db.json -m ./node_modules/json-server-auth
+npm install jwt-decode

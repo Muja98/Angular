@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "email": "stefaneli95@gmail.com",
+      "password": "$2a$10$TSMCpt2dTYmZoWtvJE1jE.fojYanjRYOZYSaGzClp3SBq9TG0urKS",
+      "name":"Stefan",
+      "surname":"Stamenkovic",
+      "id": 1
+    }
+  ]
+}
