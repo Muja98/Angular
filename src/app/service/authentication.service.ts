@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import URL from '../../apis/api'
 import {HttpClient} from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import {Router} from '@angular/router'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 export class AuthenticationService {
 
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient,private router:Router){}
 
    login(email,password) 
   {
@@ -18,21 +19,21 @@ export class AuthenticationService {
           "email": email,
           "password": password
       }
+      console.log(data)
 
       this.http.post(URL+'/login', data).subscribe(
           response=>{
-            //var filter:any = {}
-            //filter.sortByPrice = 5;
+
              var pom:any = {accessToken:''}
              pom  = response ;
              const helper = new JwtHelperService();
-           
              const decodedToken = helper.decodeToken(pom['accessToken']);
              localStorage.setItem('user',JSON.stringify(decodedToken))
-             return decodedToken;
+             this.router.navigate(['/'])
+             return("error")
           }
       )
-      return "";
+     
   }
   
   logout()

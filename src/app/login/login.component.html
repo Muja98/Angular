@@ -1,5 +1,35 @@
-<!-- style={{ backgroundImage:"url('images/login.jpg')" > -->
 
-<div class="loginPage" style="background-image: 'url(\'public/login.jpg\')'; ">
-
+<div class="loginPage" >
+    <div style="background-color: whitesmoke;" className="zika" class="zika shadow-lg p-3 mb-5 rounded container" >
+        <div class="row">
+            <div class="col d-flex aling-items-center justify-content-center">
+                <h1>Prijavi se</h1>
+            </div>
+        </div>
+        <hr style="height:2px"/>
+        <div class="row d-flex justify-content-center pt-4">
+            <div class="col-10">
+                <figcaption>E-mail Adresa</figcaption>
+                <div class="input-group mb-3 ">
+                    <input [(ngModel)]='email' style="height: 45px;" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <figcaption class="text-danger">{{error.email}}</figcaption>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center pt-4">
+            <div class="col-10">
+                <figcaption>Šifra</figcaption>
+                <div class="input-group mb-3 ">
+                    <input [(ngModel)]='password' style="height: 45px;" type="password" class="form-control w-75" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <figcaption class="text-danger">{{error.password}}</figcaption>
+            </div>
+        </div>
+        <div style="cursor: pointer; color: deepskyblue	;" class="row d-flex justify-content-center">
+            <a style="text-decoration: none;" routerLink="/register">Nemate nalog?</a> 
+        </div>
+        <div class="row d-flex aling-items-center justify-content-center pt-4">
+            <button style="height:60px; width:150px" type="button" class="btn btn-info"><h5 class="mt-1" (click)="logIn()"  >Prijavi se</h5></button>
+        </div>
+    </div>
 </div>
