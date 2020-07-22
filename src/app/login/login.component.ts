@@ -12,7 +12,6 @@ export class LoginComponent{
 
   public email:string = "";
   public password: string = "";
-
   public error ={
     email:"",
     password:""
@@ -30,10 +29,10 @@ export class LoginComponent{
 
     this.service.login(this.email,this.password);
     
-    if(this.service.isLoggedIn()===false)
-    {
-      this.error.password = "Niste uneli dobro E-maili ili šifru"
-    }
+    // if(this.service.isLoggedIn()===false)
+    // {
+    //   this.error.password = "Niste uneli dobro E-maili ili šifru"
+    // }
    
   }
 

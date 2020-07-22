@@ -3,9 +3,18 @@
     {
       "email": "stefaneli95@gmail.com",
       "password": "$2a$10$TSMCpt2dTYmZoWtvJE1jE.fojYanjRYOZYSaGzClp3SBq9TG0urKS",
-      "name":"Stefan",
-      "surname":"Stamenkovic",
+      "name": "Stefan",
+      "surname": "Stamenkovic",
       "id": 1
+    },
+    {
+      "email": "gogi@gmail.com",
+      "password": "$2a$10$bH59MuVfv2eTFgO3ddhC8.R.ve8.uBy0GfPSYHLYvHpYwndIGS/Ym",
+      "name": "Goran",
+      "surname": "Cvetanovic",
+      "location": "Silovo",
+      "age": 20,
+      "id": 2
     }
   ]
 }

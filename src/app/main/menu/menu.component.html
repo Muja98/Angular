@@ -1,11 +1,105 @@
-<div style="height: 40px; background-color: black;" class="container-fluid">
-    <div class="row d-flex">
-
-      <div style="color: #fff; cursor: pointer;"
-           class="col d-flex justify-content-center align-items-center mt-2 h5"
-       
-           >
-           <!-- {{service.isLoggedIn()===true?"Odjavi se":"Prijavi se"}} -->
-          </div>
+<div style="height: 77px; background-color: black;" class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-5 d-flex justify-content-center ">
+       <img src="./logo.jpg" style="height: 60px; cursor: pointer; "  alt="image">
+      </div>
+      <div   class="col-7 d-flex">
+          <div style="color: whitesmoke; cursor: pointer;" class="col-1 menuItem ">
+            <p>Home</p>
+          </div> 
+          <div style="color: whitesmoke; cursor: pointer;" class="col-1  menuItem">
+            <p>Forum</p>
+          </div> 
+         <div style="color: whitesmoke; cursor: pointer;" class="col-3 menuItem">
+            <p>Moje stvari</p>
+         </div> 
+        
+        <div style="color: whitesmoke; cursor: pointer;"
+                class=" col-2    menuItem"
+                    (click)="service.isLoggedIn()?logOut():logIn()"
+                >
+                <p>{{service.isLoggedIn()===true?"Odjavi se":"Prijavi se"}} </p>
+        </div>
+      </div>
+     
     </div>
 </div>
+
+
+      <ngb-carousel #carousel [interval]="6000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
+        <ng-template ngbSlide *ngFor="let img of images; index as i">
+          <div class="carousel-caption rounded mainSliderItem">
+            <h5>{{niz1[i]}}</h5>
+            <p>{{niz2[i]}}</p>
+          </div>
+            <div class="picsum-img-wrapper">
+              <img [src]="img" class="img-fluid" alt="My image {{i + 1}} description">
+            </div>
+        </ng-template>
+      </ngb-carousel>
+
+
+      <div class="container mt-5 " >
+        <div class="row h2 d-flex justify-content-center align-items-center mr-5">Kako ovo funkcioniše?</div>
+        <div class="row d-flex justify-content-center align-items-center mr-5">Ova aplikacija je osmišljena kako bi pomogla ljudima da lakše organizuju dan i da zabeleže svoje nezaboravne trenutke </div>
+        <div class="row d-flex flex-wrap">
+          <div style="width: 450px;"  class=" mt-5 ml-4">
+              <div class="row d-flex justify-content-between mt-5">
+                <div class="col-4"><img  src="/assets/menuPictures/1.jpg"   class="img-fluid" /></div>
+                <div class="col-4 "><img src="/assets/menuPictures/2.jpg"   class="img-fluid" /></div>
+                <div class="col-4"><img src="/assets/menuPictures/3.jpg"   class="img-fluid" /></div>
+              </div>
+              <div class="row mt-5"><div class="col-12"><img src="/assets/menuPictures/4.jpg"   class="img-fluid" /></div></div>
+          </div>
+          <div style="width: 450px;" class=" mt-5 ml-5 ">
+            <div style="height: 140px;" class="row">
+              <div class="col-1 border-right border-dark"></div>
+              <div  class="col-2  border-top border-dark"></div>
+              <div clas="col-1"><img style="position: relative; bottom: 27px; left:10px;" src="/assets/menuIcons/1.png" class="img-fluid" /></div>
+              <div style="position: relative; left: 30px; bottom: 30px;" class="col-6">
+                <div class="row h3">Registruj se</div>
+                <div style="font-size: 12px; color: gray;" class="row">Klikom na dugme Prijavi se, aplikacija vas vodi gde možete se registrovati ili prijaviti ukoliko već imate nalog.</div>
+              </div>
+            </div>
+            <div style="height: 140px;" class="row">
+              <div class="col-1 border-right border-dark"></div>
+              <div class="col-1 border-top border-dark"></div>
+              <div clas="col-1"><img style="position: relative; bottom: 27px; left:10px;" class="img-fluid" src="/assets/menuIcons/2.png" /></div>
+              <div style="position: relative; left: 30px; bottom: 30px;" class="col-6">
+                <div class="row h3">Forum</div>
+                <div style="font-size: 12px; color: gray;" class="row">Koristi forum da bi razmeni mišljenje sa ostalim korisnicima.</div>
+              </div>
+            </div>
+            <div style="height: 140px;" class="row">
+              <div class="col-1 border-right border-dark"></div>
+              <div class="col-2 border-top border-dark"></div>
+              <div clas="col-1 mb-5"><img style="position: relative; bottom: 27px; left:10px;" class="img-fluid" src="/assets/menuIcons/3.png" /></div>
+              <div style="position: relative; left: 30px; bottom: 30px;" class="col-6">
+                <div class="row h3">Todo</div>
+                <div style="font-size: 12px; color: gray;" class="row desc">ToDo lista je jedan od najboljih načina da se organizuje vreme.</div>
+              </div>
+            </div>
+            <div style="height: 140px;" class="row">
+              <div class="col-1 "></div>
+              <div class="col-1 border-top border-dark"></div>
+              <div clas="col-1" ><img style="position: relative; bottom: 27px; left:10px;" class="img-fluid" src="/assets/menuIcons/4.png" /></div>
+              <div style="position: relative; left: 30px; bottom: 30px;" class="col-6">
+                <div class="row h3">Navike</div>
+                <div style="font-size: 12px; color: gray;" class="row">Imate neku naviku koju bi ste hteli da steknete, ova aplikaciju vam pomaže u tome.</div>
+              </div>
+            </div>
+          </div> 
+          </div>
+        </div>
+        
+
+
+      <div style="background-color: #f7f8f9;" class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center">
+          <h2 >Zašto baš BeDo<span style="color: royalblue;">Have</span>?</h2>
+        </div>
+      </div>
+
+   <div style="background-color: black; height: 70px;" class="d-flex justify-content-center align-items-center ">
+       <p class="mt-3" style="color: gray;">Copyright © <span style="color: white;">BeDo</span><span style="color: royalblue;">Have</span>. All Rights Reserved.</p>
+   </div>

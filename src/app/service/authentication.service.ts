@@ -45,10 +45,7 @@ export class AuthenticationService {
   {
       this.http.post(URL+'/register', newUser).subscribe(
           response=>{
-             let pom  = response as Object;
-             const helper = new JwtHelperService();
-             const decodedToken = helper.decodeToken(pom['accessToken']);
-             localStorage.setItem('user',JSON.stringify(decodedToken))
+            this.router.navigate(['/'])
           }
       )
   }
