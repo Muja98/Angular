@@ -1,3 +1,59 @@
+@media (max-width: 9999px) { 
+    
+
+    div.menuRight
+    {
+        visibility: hidden;
+    }
+
+  
+}
+
+@media (max-width: 1500px) { 
+    
+    div.menuLeft
+    {
+        visibility: hidden;
+        content: none;
+    }
+
+
+    div.menuRight
+    {
+        visibility: visible;
+    }
+}
+
+@media (max-width: 1200px) { 
+    div.whyBeDoHaveContainer{
+        height: 800px;
+    }
+    div.whyBeDoHaveContainer img{
+        padding-top: 10px;
+    }
+
+ }
+
+ @media (max-width: 1200px) { 
+    div.menuPicture
+    {
+        position: relative;
+        left: 50px;
+    }
+
+ }
+ 
+ @media (max-width: 400px) { 
+    div.menuPicture
+    {
+        left: 70px;
+        width: 20px;
+    }
+
+ }
+ 
+
+
 .pera
 {
     src: url('./logo.jpg');
@@ -26,9 +82,18 @@
     transition: 0.7s;
 }
 
+.sideBarItem
+{
+    cursor: pointer;
+    color: white;
+}
+.sideBarItem :hover{
+    color: royalblue;
+    transition: 0.7s;
+}
+
 .mainSliderItem
 {
     opacity: 0.8;
-    background-color: black;
     border-radius: 1.2%;
 }

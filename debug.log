@@ -1,0 +1,8 @@
+[0723/152927.524:ERROR:process_info.cc(329)] VirtualQueryEx: Access is denied. (0x5)
+[0723/152927.526:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[0723/152927.527:ERROR:process_memory_win.cc(39)] Failed to initialize ProcessInfo.
+[0723/152927.527:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0723/153313.914:ERROR:process_info.cc(329)] VirtualQueryEx: Access is denied. (0x5)
+[0723/153313.914:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[0723/153313.914:ERROR:process_memory_win.cc(39)] Failed to initialize ProcessInfo.
+[0723/153313.914:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)

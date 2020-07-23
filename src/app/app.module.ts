@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     MainModule,
+
     UserModule,
     RouterModule.forRoot([
       {path:'login', component:LoginComponent},

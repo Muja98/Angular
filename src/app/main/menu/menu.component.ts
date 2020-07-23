@@ -1,7 +1,6 @@
 import { Component,ViewChild  } from '@angular/core';
 import { AuthenticationService } from '../../service/authentication.service';
 import {Router} from '@angular/router'
-
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-menu',
@@ -11,7 +10,7 @@ import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/n
 
 export class MenuComponent  {
 
-
+  public sideBar:boolean = false;
 
   images = [1,2,3].map((n) => `/assets/${n}.jpg`);
 
@@ -54,5 +53,13 @@ export class MenuComponent  {
   niz1 = ['Napravi svoj dnevni plan','Kreiraj svoje navike','Piši dnevnik']
   niz2 = ['Isplaniraj dan uz pomoć ToDo liste.','Kreiraj svoj navike tako što ih pratiti svakog dana.','Piši dnvenik i podeli svoja iskustva sa ostalima.']
 
-
+   w3_open() {
+     this.sideBar = true;
+    document.getElementById("mySidebar").style.display = "block";
+  }
+  
+   w3_close() {
+     this.sideBar=false;
+    document.getElementById("mySidebar").style.display = "none";
+  }
 }
