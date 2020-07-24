@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .full-height {
+    height: 100%;
+    transition: 1s;
+
+  }
+  .sidebar
+  {
+    cursor: pointer;
+    outline: 0;
+  }
+  .sidebar p:hover 
+  {
+    color: royalblue;
+    font-weight: 500;
+  }
+
+  

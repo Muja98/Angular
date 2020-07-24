@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router'
 import { NgImageSliderModule } from 'ng-image-slider';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { SidebarModule } from 'ng-sidebar';
+
 
 @NgModule({
   declarations: [MenuComponent],
@@ -14,7 +14,6 @@ import { SidebarModule } from 'ng-sidebar';
     CommonModule,
     NgImageSliderModule,
     NgbModule,
-    SidebarModule.forRoot(),
     RouterModule.forChild([
       {path:'', component:MenuComponent}
     ])

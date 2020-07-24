@@ -1,17 +1,21 @@
+<!--SIDEBAR-->
 
 <div class="w3-sidebar w3-bar-block "  style="display:none; width: 230px; background-color: black; z-index: 999;" id="mySidebar">
   <button (click)="w3_close()" onclick="w3_close()" style="background-color: black; color: white;" class="w3-bar-item w3-large h3">
     &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
     &times;</button>
-    <div class="container d-flex flex-column ml-4">
+    <div class="container d-flex flex-column ml-2">
       <div class="row h3 sideBarItem" routerLink="/"><p>Home</p></div>
       <div class="row h3 sideBarItem" routerLink="/"><p>Forum</p></div>
-      <div class="row h3 sideBarItem" routerLink="/"><p>Moje Stvari</p></div>
+      <div class="row h3 sideBarItem" routerLink="dashboard"><p>Dasboard</p></div>
       <div class="row h3 sideBarItem" (click)="service.isLoggedIn()?logOut():logIn()"><p>{{service.isLoggedIn()===true?"Odjavi se":"Prijavi se"}}</p></div>
     </div>
 </div>
 
+<!--END OF SIDEBAR-->
+
 <!--MENU-->
+
 <div style="height: 80px; background-color: black; width: 100%;" >
     <div class="row d-flex justify-content-center align-items-center">
       <div  class="col-2 d-flex justify-content-center menuPicture">
@@ -25,7 +29,7 @@
             <p>Forum</p>
           </div> 
          <div style="color: whitesmoke; cursor: pointer;" class="col-2 menuItem">
-            <p>Moje stvari</p>
+            <p routerLink="dashboard">Dasboard</p>
          </div> 
         
         <div style="color: whitesmoke; cursor: pointer;"
@@ -43,11 +47,11 @@
       
     </div>
 </div>
+
 <!--END OF MENU-->
 
-
-
 <!--SLIDER-->
+
 <ngb-carousel #carousel [interval]="6000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
   <ng-template  ngbSlide *ngFor="let img of images; index as i">
     <div class="carousel-caption rounded mainSliderItem ">
@@ -59,6 +63,7 @@
       </div>
   </ng-template>
 </ngb-carousel>
+
 <!--END OF SLIDER-->
 
 <!--INROMATION 1-->
@@ -74,7 +79,7 @@
         </div>
         <div class="row mt-5"><div class="col-12"><img src="/assets/menuPictures/4.jpg"   class="img-fluid" /></div></div>
     </div>
-    <div style="width: 400px;" class=" mt-5  ">
+    <div style="width: 400px; " class=" mt-5 ml-4 ">
       <div style="height: 140px;" class="row">
         <div class="col-1 border-right border-dark"></div>
         <div  class="col-2  border-top border-dark"></div>
@@ -185,6 +190,6 @@
 
 <!--FOOTER-->
 <div style="background-color: black; height: 70px;" class="d-flex justify-content-center align-items-center ">
-    <p class="mt-3" style="color: gray;">Copyright © <span style="color: white;">BeDo</span><span style="color: royalblue;">Have</span>. All Rights Reserved.</p>
+    <p class="mt-3" style="color: gray;">Copyright © <span style="color: white;">BeDo</span><span style="color: royalblue;">Have</span>. Sva prava zadržana.</p>
 </div>
 <!--END OF FOOTER-->

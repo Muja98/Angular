@@ -27,6 +27,7 @@
     "jwt-decode": "^2.2.0",
     "ng-image-slider": "^2.5.0",
     "ng-sidebar": "^9.4.2",
+    "ng-simple-sidebar": "^4.2.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

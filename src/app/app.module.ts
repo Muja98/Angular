@@ -1,3 +1,4 @@
+import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
 import { FormsModule } from '@angular/forms';
 import { MainModule } from './main/main.module';
@@ -10,6 +11,7 @@ import { LoginComponent } from './login/login.component'
 import {RouterModule} from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSimpleSidebarModule } from 'ng-simple-sidebar';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     MainModule,
-
     UserModule,
+    DashboardModule,
     RouterModule.forRoot([
       {path:'login', component:LoginComponent},
       {path:'register', component:RegisterComponent}
     ]),
-    NgbModule
+    NgbModule,
+    NgSimpleSidebarModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

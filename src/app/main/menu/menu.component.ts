@@ -9,7 +9,8 @@ import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/n
 })
 
 export class MenuComponent  {
-
+  constructor(public service: AuthenticationService,private router:Router) {}
+  
   public sideBar:boolean = false;
 
   images = [1,2,3].map((n) => `/assets/${n}.jpg`);
@@ -40,7 +41,7 @@ export class MenuComponent  {
     }
   }
 
-  constructor(public service: AuthenticationService,private router:Router) {}
+  
   logIn()
   {
     this.router.navigate(['/login'])
