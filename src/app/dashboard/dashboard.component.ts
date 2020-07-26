@@ -10,6 +10,7 @@ export class DashboardComponent {
   public picture = "open"
   public flag = false;
   
+  public height = document.body.scrollHeight+"px";
   Povecaj()
   {
     this.picture="close"

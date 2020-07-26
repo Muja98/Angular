@@ -1,0 +1,21 @@
+p:hover
+{
+    color: white;
+}
+
+.todoeditorAdd p:hover
+{
+   color: white;
+   background-color: red;
+   background-size: unset;
+}
+
+
+.section:hover p {
+    color: #c83349;
+}
+
+.section:hover span {
+    background-color: #c83349;
+    color: white;
+}
