@@ -1,1 +1,23 @@
-<p>tododetail works!</p>
+<div style="min-width: 320px;" class="container col-5 modal-content mt-5">
+  <div class="row p-3 d-flex justify-content-center flex-wrap">
+    <div style="min-width: 320px;" class="col-5 h2 d-flex ml-3">
+      <span style="color: royalblue;" class="mr-2">Title:</span> {{items.title}}
+    </div>
+    <div  style="min-width: 320px;" class="col-5 h2 mr-3 d-flex justify-content-center">
+      <span style="color: royalblue;" class="mr-2">Date:</span> {{items.date}}
+    </div>
+  </div>
+
+  <div *ngFor="let item of niz; let i = index"  class=" row pr-5 ml-5 mr-5">
+    <div style="width: 40px;"><input  style="margin-top: 10px; height: 20px; width: 20px;" type="checkbox" [checked]=item.checked (click)="click(item)" /></div>
+    <p *ngIf="item.checked" style="text-decoration: line-through; text-decoration-color: royalblue; font-size: 20px;">{{item.title}}</p><p style="font-size: 20px;" *ngIf="!item.checked">{{item.title}}</p>
+  </div>
+  
+  <div class="row p-5">
+    <h3 style="color: royalblue;">Note:</h3>
+    <textarea style="width: 100%; min-height: 100px; max-height: 100px;" >{{items.comment}}</textarea>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info mr-3" (click)="close()">Close</button>
+  </div>
+</div>

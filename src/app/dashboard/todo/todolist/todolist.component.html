@@ -1,0 +1,44 @@
+<!-- <app-todoeditor [todoItem]="updateElement" (change)="handleUpdatelist($event)"></app-todoeditor> -->
+<div class="container rounded col-4 mt-3 p-2">
+    <div class="row h1 d-flex justify-content-center">
+        BeDo<span style="color:white">Have</span>
+    </div>
+    <div class="row p-3 d-flex justify-content-center align-items-center">
+        <button class="btn btn-danger">Add new To-Do</button>
+    </div>
+</div>
+
+
+ 
+
+<div style="min-height: 650px;" class="container-fluid col-9  d-flex flex-row flex-wrap justify-content-center">
+<div *ngFor="let item of niz" style="min-width: 300px;" class="mr-4 col-5">
+    <div  style="background-color: #fff; min-width: 300px;  " class="col border mt-4 p-3 rounded">
+        <div class="row border-bottom ml-2 mr-2 d-flex justify-content-between">
+            <h4><span style="color: royalblue; cursor: pointer;">Title</span>:  {{item.title}}</h4>
+            <div class="d-flex justify-content-center align-items-center">
+                <img class="mr-3 mb-1" style="cursor: pointer;"  width="32px" src="/assets/todoComponent/penBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Edit Todo"/>
+                <img (click)="showConfirm(item)" class="mr-3" width="35px" style="cursor: pointer;" src="/assets/todoComponent/todoBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="To-Do List"/>
+                <img width="27px" style="cursor: pointer;" src="/assets/todoComponent/xBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Delete Todo"/>
+            </div>
+        </div>
+        <div class="row ml-2">
+            <h5><span style="color: royalblue;">Date</span>: {{item.date}}</h5>
+        </div>
+        <div class="row ml-2">
+            <h5><span style="color: royalblue;">Estimate</span>: {{item.estimate}}%</h5>
+        </div>
+        <div class="row ml-2">
+            <h5><span style="color: royalblue;">done/items</span>: 3/4</h5>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="container d-flex justify-content-center  mt-5">
+    <ngb-pagination [collectionSize]="70"  aria-label="Default pagination">
+       
+    </ngb-pagination>
+</div>
+

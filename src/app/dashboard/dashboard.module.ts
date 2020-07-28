@@ -9,17 +9,21 @@ import { TodoComponent } from './todo/todo.component';
 import { TodoeditorComponent } from './todo/todoeditor/todoeditor.component';
 import { TodolistComponent } from './todo/todolist/todolist.component';
 import { TododetailComponent } from './todo/tododetail/tododetail.component';
-
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent],
   imports: [
     CommonModule,
+    NgbPaginationModule,
     FormsModule,
     RouterModule.forRoot([
       {path:'dashboard', component:DashboardComponent,
       children:[
-        {path:'user',component:UserComponent,},
-        {path:'todo',component:TodoComponent}
+        {path:'user',component:UserComponent},
+        {path:'todo',component:TodoComponent},
+        {path:'newtodo',component:TodoeditorComponent},
+        {path:'todo/:idUser',component:TodoeditorComponent}
+        
       ]
       }
    

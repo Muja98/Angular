@@ -12,7 +12,7 @@ import {RouterModule} from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSimpleSidebarModule } from 'ng-simple-sidebar';
-
+import { SimpleModalModule } from 'ngx-simple-modal'
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +25,7 @@ import { NgSimpleSidebarModule } from 'ng-simple-sidebar';
     HttpClientModule,
     FormsModule,
     MainModule,
+    SimpleModalModule,
     UserModule,
     DashboardModule,
     RouterModule.forRoot([

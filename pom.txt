@@ -5,3 +5,5 @@ npm install jwt-decode
 npm install ng-image-slider --save
 npm install --save ng-sidebar
 npm install ng-simple-sidebar --save
+npm i ngx-smart-modal --save
+npm install ngx-simple-modal
