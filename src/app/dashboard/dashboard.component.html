@@ -1,5 +1,10 @@
-<div  class="full-height d-flex">
-<div style="background-color: rgb(238, 238, 238); " [style.height]="height" [style.width]="width" class="full-height  border ">
+
+
+
+<div style="background-color:#3AAFA9"  class="full-height d-flex">
+
+
+<div style="background-color:#3AAFA9" [style.height]="height" [style.width]="width" class="full-height  border ">
 <div style="margin-left: 19px; margin-top: 15px;" class="row">
     <img style="cursor: pointer;" width="23px" (click)="flag===false?Povecaj():Smanji()"  src="/assets/sideBarIcons/{{picture}}.png" alt="img" />
 </div>
@@ -15,7 +20,7 @@
     <img style="cursor: pointer;" width="30px"  src="/assets/sideBarIcons/checklist.png"  alt="img" />
     <p style="position: absolute; z-index: 1; left: 60px; font-size: 23px;"  class="mb-4">Todo list</p>
 </div>
-<div style="margin-left: 15px; margin-top: 25px;" class="row sidebar">
+<div style="margin-left: 15px; margin-top: 25px;" routerLink="habbit" class="row sidebar">
     <img style="cursor: pointer;" width="30px"  src="/assets/sideBarIcons/brain.png" alt="img" />
     <p style="position: absolute; z-index: 1; left: 60px; font-size: 23px;" class="mb-4">Habbit's</p>
 </div>
@@ -24,6 +29,25 @@
     
 </div>
 
-<div   style="width: 100%; z-index: 3; background-color:royalblue; -webkit-background-size: cover; background-size: cover; ">
-        <router-outlet></router-outlet>
-</div> 
+    <div  style="width: 100%; z-index: 3; background-color: #F0F0EF; -webkit-background-size: cover; background-size: cover; " class="d-flex flex-column">
+        <div style="height: 60px; width: 100%; background-color: #ffffff; ;"  class="m-0">
+            <div class="row d-flex justify-content-between">
+                <div style="margin-left: 45px;" class="col-2">
+                    <p style="font-size: 36px; font-weight: 800; cursor: pointer;">BeDo<span style="color: #3AAFA9;">Have</span></p>
+                </div>
+                <div  class="col-2  d-flex justify-content-center align-items-center mb-1">
+                    <div class="col-3 ">
+                        <img  class="rounded-circle img-fluid" width="70px" src="/assets/profile.jpg"  alt="img" />
+                    </div>
+                    <div style="font-size: 20px; font-weight: 500;" class="col-9">
+                        Stefan Stamenković 
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="p-5">
+                <router-outlet></router-outlet>
+        </div>  
+    </div>
+</div>

@@ -1,40 +1,130 @@
-<!-- <app-todoeditor [todoItem]="updateElement" (change)="handleUpdatelist($event)"></app-todoeditor> -->
-<div class="container rounded col-4 mt-3 p-2">
-    <div class="row h1 d-flex justify-content-center">
-        BeDo<span style="color:white">Have</span>
-    </div>
-    <div class="row p-3 d-flex justify-content-center align-items-center">
-        <button class="btn btn-danger">Add new To-Do</button>
-    </div>
-</div>
-
-
- 
-
-<div style="min-height: 650px;" class="container-fluid col-9  d-flex flex-row flex-wrap justify-content-center">
-<div *ngFor="let item of niz" style="min-width: 300px;" class="mr-4 col-5">
-    <div  style="background-color: #fff; min-width: 300px;  " class="col border mt-4 p-3 rounded">
-        <div class="row border-bottom ml-2 mr-2 d-flex justify-content-between">
-            <h4><span style="color: royalblue; cursor: pointer;">Title</span>:  {{item.title}}</h4>
-            <div class="d-flex justify-content-center align-items-center">
-                <img class="mr-3 mb-1" style="cursor: pointer;"  width="32px" src="/assets/todoComponent/penBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Edit Todo"/>
-                <img (click)="showConfirm(item)" class="mr-3" width="35px" style="cursor: pointer;" src="/assets/todoComponent/todoBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="To-Do List"/>
-                <img width="27px" style="cursor: pointer;" src="/assets/todoComponent/xBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Delete Todo"/>
+<div class="row d-flex flex-row">
+    <div class="col-xl-3 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <img width="50px" src="/assets/todo.png"  alt="img"/>
+                        </div>
+                        <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
+                            <span >
+                                <h3>6</h3>
+                                <span style="font-size: 20px; color: gray;">Todo's</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row ml-2">
-            <h5><span style="color: royalblue;">Date</span>: {{item.date}}</h5>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <img width="50px" src="/assets/items.png"  alt="img"/>
+                        </div>
+                        <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
+                            <span >
+                                <h3>45</h3>
+                                <span style="font-size: 20px; color: gray;">Todo items</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row ml-2">
-            <h5><span style="color: royalblue;">Estimate</span>: {{item.estimate}}%</h5>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <img width="50px" src="/assets/done.png"  alt="img"/>
+                        </div>
+                        <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
+                            <span >
+                                <h3>30</h3>
+                                <span style="font-size: 20px; color: gray;">Done</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row ml-2">
-            <h5><span style="color: royalblue;">done/items</span>: 3/4</h5>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media ">
+                        <div class="media-left media-middle">
+                            <img width="50px" src="/assets/notDone.png"  alt="img"/>
+                        </div>
+                        <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
+                            <span >
+                                <h3>15</h3>
+                                <span style="font-size: 20px; color: gray;">Not done</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</div>
 
+<div  class="row rounded m-5 d-flex flex-wrap">
+    <div style="min-width: 290px;" class="col-4 m-1">
+        <div class="row p-3 d-flex justify-content-center align-items-center">
+            <button routerLink="newtodo" class="btn btn-info">Add new To-Do</button>
+        </div>
+    </div>
+    <div style="min-width: 290px;" class="col  m-1 d-flex justify-content-between align-items-center">
+        <input type="date" placeholder="e.g. 2020-5-10" class="form-control col-10" />
+        <button class="btn btn-success">Search</button>
+    </div>
+    <div  style="min-width: 290px;"class="col  m-1 d-flex justify-content-between ml-5 align-items-center">
+        <select class="custom-select col-8" id="inputGroupSelect01">
+            <option selected>Order by</option>
+            <option value="1">Date Ascending</option>
+            <option value="2">Date Descending</option>
+            <option value="3">Date Ascending</option>
+            <option value="4">Date Descending</option>
+          </select>
+    </div>
+</div>
+<div style="background-color: #FFFFFF;" class="table-responsive rounded p-4">
+    <table class="table  table-borderless">
+        <thead class="table border-top-0">
+            <tr  class="table border-top-0">
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Date</th>
+              <th scope="col">Estimate</th>
+              <th scope="col">Items</th>
+              <th scope="col">Done items</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  style="font-size: 18px; cursor: pointer;" *ngFor="let item of niz; index as i ">
+              <th scope="row">{{i+1}}</th>
+              <td>{{item.title}}</td>
+              <td>{{item.date}}</td>
+              <td>{{item.estimate}}%</td>
+              <td>3</td>
+              <td>4</td>
+              <td style="width: 50px;"><img class="mr-3 mb-1" style="cursor: pointer;"  width="32px" src="/assets/todoComponent/penBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Edit Todo"/></td>
+              <td style="width: 50px;"><img routerLink="detail" class="mr-3" width="32px" style="cursor: pointer;" src="/assets/todoComponent/todoBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="To-Do List"/></td>
+              <td style="width: 50px;"><img width="27px" style="cursor: pointer;" src="/assets/todoComponent/xBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Delete Todo"/></td>
+            </tr>
+          </tbody>
+    </table>
+  </div>
 
 <div class="container d-flex justify-content-center  mt-5">
     <ngb-pagination [collectionSize]="70"  aria-label="Default pagination">
