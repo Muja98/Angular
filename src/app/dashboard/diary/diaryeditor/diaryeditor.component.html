@@ -1,1 +1,21 @@
-<p>diaryeditor works!</p>
+<div style="Background-color: #ffffff; min-height: 605px;" class="fluid-container  rounded p-5">
+        <div style="color: #3AAFA9; font-size: 32px; font-weight: 700;" class="row justify-content-between pl-5 pr-5">
+            <div class="col-xl-6 col-xs-12">
+                <div >Title:</div>
+                <input type="text" class="form-control col-8" style="height: 40px; font-size: 20px; font-weight: 600;" placeholder="e.g. diary for Monday">
+            </div>
+            <div class="col-xl-6 col-xs-12">
+                <div  >Date:</div>
+                <input type="date" class="form-control col-8" style="height: 40px; font-size: 20px; font-weight: 600;">
+            </div>
+        </div>
+
+        <div class="row pl-5 pr-5 mt-4">
+            <textarea  style="border-color: transparent; resize:none;" class="notes"></textarea>
+        </div>
+
+        <div  class="row  d-flex justify-content-center mt-5">
+            <button style="height: 40px;"  class="btn btn-dark">Add new entry</button>
+            <button style="height: 40px;" routerLink="/dashboard/diary" class="btn btn-danger ml-3">Cancel</button>
+        </div>
+</div>

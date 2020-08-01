@@ -1,0 +1,14 @@
+.notes {
+    background-attachment: local;
+    background-image:
+        linear-gradient(to right, white 10px, transparent 10px),
+        linear-gradient(to left, white 10px, transparent 10px),
+        repeating-linear-gradient(white, white 35px, black 35px, black 36px, white 36px);
+    line-height: 36px;
+    padding: 8px 10px;
+    width: 100%;
+    height: 500px;
+    font-size: 22px;
+    outline: none;
+}
+

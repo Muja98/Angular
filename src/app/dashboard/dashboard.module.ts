@@ -1,3 +1,7 @@
+import { DiarylistComponent } from './diary/diarylist/diarylist.component';
+import { DiarydetailComponent } from './diary/diarydetail/diarydetail.component';
+import { DiaryeditorComponent } from './diary/diaryeditor/diaryeditor.component';
+import { DiaryComponent } from './diary/diary.component';
 import { HabbitComponent } from './habbit/habbit.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -16,7 +20,7 @@ import { HabbitdetailComponent } from './habbit/habbitdetail/habbitdetail.compon
 import { HabbiteditorComponent } from './habbit/habbiteditor/habbiteditor.component';
 
 @NgModule({
-  declarations: [HabbitlistComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent,DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent],
+  declarations: [HabbitlistComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent,DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent,DiarylistComponent, DiaryeditorComponent, DiarydetailComponent, DiaryComponent],
   imports: [
     CommonModule,
     NgbPaginationModule,
@@ -31,7 +35,11 @@ import { HabbiteditorComponent } from './habbit/habbiteditor/habbiteditor.compon
         {path:'todo/:idUser',component:TodoeditorComponent},
         {path:'newhabbit',component:HabbiteditorComponent},
         {path:'habbit/detail',component:HabbitdetailComponent},
-        {path:'habbit',component:HabbitComponent}
+        {path:'habbit',component:HabbitComponent},
+        {path:'newdiary',component:DiaryeditorComponent},
+        {path:'diary',component:DiaryComponent},
+      
+        {path:'diary/detail',component:DiarydetailComponent}
       ]
       }
    
