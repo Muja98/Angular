@@ -6,9 +6,9 @@ import { Component} from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  public width = "60px"
+  public width = "280px"
   public picture = "open"
-  public flag = false;
+  public flag = true;
   
   public height = document.body.scrollHeight+"px";
   Povecaj()

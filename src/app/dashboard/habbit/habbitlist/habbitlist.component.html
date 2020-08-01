@@ -1,10 +1,114 @@
-<!--Search for specific habbiy-->
-<div class="container d-flex">
-
-</div>
-
-<div class="container d-flex justify-content-between flex-column" >
-    <div style="background-color: #fff;" *ngFor="let item of list" class="col-4">
-        <h1>Pera</h1>
+<div class="row d-flex flex-row justify-content-between">
+    
+    <div class="col-xl-3 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <img width="50px" src="/assets/done.png"  alt="img"/>
+                        </div>
+                        <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
+                            <span >
+                                <h3>1</h3>
+                                <span style="font-size: 20px; color: gray;">Done</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <img width="50px" src="/assets/habbit.png"  alt="img"/>
+                        </div>
+                        <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
+                            <span >
+                                <h3>4</h3>
+                                <span style="font-size: 20px; color: gray;">Habbits</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media ">
+                        <div class="media-left media-middle">
+                            <img width="50px" src="/assets/notDone.png"  alt="img"/>
+                        </div>
+                        <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
+                            <span >
+                                <h3>3</h3>
+                                <span style="font-size: 20px; color: gray;">Not done</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<div  class="row rounded m-5 d-flex flex-wrap">
+    <div style="min-width: 290px;" class="col-4 m-1">
+        <div class="row p-3 d-flex justify-content-center align-items-center">
+            <button routerLink="/dashboard/newhabbit" class="btn btn-info">Add new Habbit</button>
+        </div>
+    </div>
+    <div style="min-width: 290px;" class="col  m-1 d-flex justify-content-between align-items-center">
+        <input type="date" placeholder="e.g. 2020-5-10" class="form-control col-10" />
+        <button class="btn btn-success">Search</button>
+    </div>
+    <div  style="min-width: 290px;"class="col  m-1 d-flex justify-content-between ml-5 align-items-center">
+        <select class="custom-select col-8" id="inputGroupSelect01">
+            <option selected>Order by</option>
+            <option value="1">Every day</option>
+            <option value="2">Specific times in week</option>
+            <option value="3">Specific days in week</option>
+            <option value="4">Specific days in month</option>
+          </select>
+    </div>
+</div>
+
+
+<div style="background-color: #FFFFFF;" class="table-responsive rounded p-4 mt-5">
+    <table class="table  table-borderless">
+        <thead class="table border-top-0">
+            <tr  class="table border-top-0">
+              <th scope="col">#</th>
+              <th scope="col">Title of habbit</th>
+              <th scope="col">Date</th>
+              <th scope="col">Day</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  style="font-size: 18px; cursor: pointer;" *ngFor="let item of niz; index as i ">
+              <th scope="row">{{i+1}}</th>
+              <td>{{item.title}}</td>
+              <td>{{item.date}}</td>
+              <td>{{check(item)}}</td>
+              <td style="width: 50px;"><img class="mr-3 mb-1" style="cursor: pointer;"  width="32px" src="/assets/todoComponent/penBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Edit Todo"/></td>
+              <td style="width: 50px;"><img routerLink="detail" class="mr-3" width="32px" style="cursor: pointer;" src="/assets/whyBeDoHave/2.png" alt="img" data-toggle="tooltip" data-placement="top" title="To-Do List"/></td>
+              <td style="width: 50px;"><img width="27px" style="cursor: pointer;" src="/assets/todoComponent/xBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Delete Todo"/></td>
+            </tr>
+          </tbody>
+    </table>
+  </div>
+
+<div class="container d-flex justify-content-center  mt-5">
+    <ngb-pagination [collectionSize]="70"  aria-label="Default pagination">
+       
+    </ngb-pagination>
+</div>
+

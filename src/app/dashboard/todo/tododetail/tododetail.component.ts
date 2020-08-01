@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component} from '@angular/core';
 import { SimpleModalComponent } from "ngx-simple-modal";
 
@@ -12,7 +13,7 @@ export interface ConfirmModel {
 export class TododetailComponent extends SimpleModalComponent<ConfirmModel, boolean> implements ConfirmModel {
 
   pom: boolean  =false;
-  constructor() {
+  constructor(private router: Router) {
     super();
     
   }
@@ -33,6 +34,11 @@ export class TododetailComponent extends SimpleModalComponent<ConfirmModel, bool
    
     this.result = true;
     this.close();
+  }
+
+  Exit()
+  {
+    this.router.navigate(['dashboard/todo'])
   }
 
   click(item)

@@ -1,3 +1,4 @@
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HabbitdetailComponent implements OnInit {
 
-  constructor() { }
-
+  constructor() {}
+  date:Date = new Date();
+  
+  weekDays=  [
+  {title:"Mon",checked:true},
+  {title:"Tue",checked:false},
+  {title:"Wed",checked:true},
+  {title:"Thu",checked:false},
+  {title:"Fri",checked:true},
+  {title:"Sat",checked:false},
+  {title:"Sun",checked:false}
+  ]
   ngOnInit(): void {
   }
 

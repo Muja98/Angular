@@ -1,1 +1,55 @@
-<p>habbitdetail works!</p>
+<div style="background-color: #ffffff;" class="container-fluid col-10 pb-5 rounded ">
+
+    <div style="font-size: 32px; font-weight: 700; background-color: #3AAFA9;" class="row rounded-top p-4 mt-4 d-flex justify-content-around">
+        <div class="col-xl-4 col-xs-12 ">
+            Title: &nbsp;<span style="color: #F0F0EF;;">Workout</span> 
+        </div>
+        <div class="col-xl-4 col-xs-12 ">
+            Date: &nbsp;<span style="color: #F0F0EF;;">5/10/2020</span> 
+        </div>
+    </div>
+    <div  style="color: #3AAFA9; font-size: 32px; font-weight: 700;"  class="row mt-5 d-flex justify-content-around">
+        <div class="col-xl-4 col-xs-12">
+            <div >Description:</div>
+            <textarea type="text" disabled  class="form-control col-12 pl-1" style="resize:none; background-color: #ffffff; border-color: transparent; min-height: 120px; max-height: 120px;  font-size: 20px; font-weight: 700;" placeholder="e.g. I want to do this because...">I want to do this because i want to build some muscles i look like pritka za paradajz</textarea>
+        </div>
+        <div class="col-xl-4 col-xs-12 ">
+            <div >Day's to remind:</div>
+            <div  class="d-flex mt-5 mr-5 " style="font-size: 20px; font-weight: 500;">
+                <span style="cursor: pointer;" class="ml-3" *ngFor="let item of weekDays"> 
+                    <div *ngIf="item.checked===true" class="d-flex justify-content-center rounded p-1" style="background-color: #3AAFA9; color: white;">{{item.title}}</div>
+                    <span *ngIf="item.checked===false" style="color: black;">{{item.title}}</span>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-5 d-flex justify-content-around" style="color: #3AAFA9; font-size: 32px; font-weight: 700;">
+        <div class="col-xl-4 col-xs-12 d-flex flex-column align-items-center">
+            <!-- <div class="row">Add new comment    :</div> -->
+            <div  class="row col-12 flex-column mt-5">
+                <div style="font-size: 22px; color: 	#F0F0EF; background-color: #3AAFA9;" class="row justify-content-between p-2">
+                    <span>New Comment:</span>
+                    <span>{{date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()}}</span>
+                </div>
+                <div class="row border"><textarea placeholder="e.g. i failed first week because..."  style="resize:none; width: 100%; border-color: transparent; font-size: 20px; font-weight: 500;" class="p-3 form-control"></textarea></div>
+            </div>
+            <div  class="d-flex row col-12 justify-content-end p-2" ><button class="btn btn-info">Add Comment</button></div>
+        </div>
+        <div class="col-xl-4 col-xs-12  d-flex flex-column align-items-baseline ">
+                <div class="row ml-2">Comment's:</div>
+                <div  style="font-size: 18px; " class="row flex-column ml-4 mt-2">
+                    <div class="row" style="color: black;" class="row">10/3/2020</div>
+                    <div class="row">Mos i ovamo a mos i onamo</div>
+                </div>
+                <div  style="font-size: 18px; " class="row flex-column ml-4 mt-2">
+                    <div class="row" style="color: black;" class="row">10/3/2020</div>
+                    <div class="row">Mos i ovamo a mos i onamo</div>
+                </div>
+                <div  style="font-size: 18px; " class="row flex-column ml-4 mt-2">
+                    <div class="row" style="color: black;" class="row">10/3/2020</div>
+                    <div class="row">Mos i ovamo a mos i onamo</div>
+                </div>
+        </div>
+    </div>  
+</div>

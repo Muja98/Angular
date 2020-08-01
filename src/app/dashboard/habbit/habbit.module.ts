@@ -4,13 +4,14 @@ import { HabbitlistComponent } from './habbitlist/habbitlist.component';
 import { HabbitdetailComponent } from './habbitdetail/habbitdetail.component';
 import { HabbiteditorComponent } from './habbiteditor/habbiteditor.component';
 import { HabbitComponent } from './habbit.component';
-
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [HabbitlistComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+  
+  ],
 })
 export class HabbitModule { }

@@ -29,7 +29,8 @@ import { HabbiteditorComponent } from './habbit/habbiteditor/habbiteditor.compon
         {path:'todo/detail',component:TododetailComponent},
         {path:'newtodo',component:TodoeditorComponent},
         {path:'todo/:idUser',component:TodoeditorComponent},
-       
+        {path:'newhabbit',component:HabbiteditorComponent},
+        {path:'habbit/detail',component:HabbitdetailComponent},
         {path:'habbit',component:HabbitComponent}
       ]
       }
