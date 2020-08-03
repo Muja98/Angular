@@ -1,6 +1,6 @@
+import { DiaryeditorComponent } from './diary/diaryeditor/diaryeditor.component';
 import { DiarylistComponent } from './diary/diarylist/diarylist.component';
 import { DiarydetailComponent } from './diary/diarydetail/diarydetail.component';
-import { DiaryeditorComponent } from './diary/diaryeditor/diaryeditor.component';
 import { DiaryComponent } from './diary/diary.component';
 import { HabbitComponent } from './habbit/habbit.component';
 import { FormsModule } from '@angular/forms';
@@ -18,13 +18,20 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { HabbitlistComponent } from './habbit/habbitlist/habbitlist.component';
 import { HabbitdetailComponent } from './habbit/habbitdetail/habbitdetail.component';
 import { HabbiteditorComponent } from './habbit/habbiteditor/habbiteditor.component';
-
+import { AngularResizedEventModule } from 'angular-resize-event';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SatPopoverModule } from '@ncstate/sat-popover';
 @NgModule({
-  declarations: [HabbitlistComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent,DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent,DiarylistComponent, DiaryeditorComponent, DiarydetailComponent, DiaryComponent],
+  declarations: [HabbitlistComponent,DiarylistComponent,DiarydetailComponent,DiaryComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent,DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent],
   imports: [
+    SatPopoverModule,
+    BrowserAnimationsModule,
+    NgbModule,
     CommonModule,
     NgbPaginationModule,
     FormsModule,
+    AngularResizedEventModule,
     RouterModule.forRoot([
       {path:'dashboard', component:DashboardComponent,
       children:[
@@ -36,10 +43,9 @@ import { HabbiteditorComponent } from './habbit/habbiteditor/habbiteditor.compon
         {path:'newhabbit',component:HabbiteditorComponent},
         {path:'habbit/detail',component:HabbitdetailComponent},
         {path:'habbit',component:HabbitComponent},
-        {path:'newdiary',component:DiaryeditorComponent},
         {path:'diary',component:DiaryComponent},
-      
-        {path:'diary/detail',component:DiarydetailComponent}
+        {path:'diary/detail',component:DiarydetailComponent},
+        {path:'newdiary',component:DiaryeditorComponent}
       ]
       }
    

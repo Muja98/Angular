@@ -1,0 +1,11 @@
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+    background-color: white !important;
+    color: #3AAFA9;
+    
+}
+
+ ngb-pagination ::ng-deep ul > li.active > a {
+    background-color: #3AAFA9 !important;
+    color: wheat;
+}
+

@@ -12,7 +12,8 @@ import {RouterModule} from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSimpleSidebarModule } from 'ng-simple-sidebar';
-import { SimpleModalModule } from 'ngx-simple-modal'
+import { SimpleModalModule } from 'ngx-simple-modal';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { SimpleModalModule } from 'ngx-simple-modal'
       {path:'register', component:RegisterComponent}
     ]),
     NgbModule,
-    NgSimpleSidebarModule
+    NgSimpleSidebarModule,
+    FontAwesomeModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

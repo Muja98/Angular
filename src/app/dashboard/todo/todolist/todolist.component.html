@@ -9,7 +9,7 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h3>6</h3>
+                                <h2>6</h2>
                                 <span style="font-size: 20px; color: gray;">Todo's</span>
                             </span>
                         </div>
@@ -28,7 +28,7 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h3>45</h3>
+                                <h2>45</h2>
                                 <span style="font-size: 20px; color: gray;">Todo items</span>
                             </span>
                         </div>
@@ -47,8 +47,8 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h3>30</h3>
-                                <span style="font-size: 20px; color: gray;">Done</span>
+                                <h2>30</h2>
+                                <span style="font-size: 20px; color: gray;">Finished</span>
                             </span>
                         </div>
                     </div>
@@ -66,8 +66,8 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h3>15</h3>
-                                <span style="font-size: 20px; color: gray;">Not done</span>
+                                <h2>15</h2>
+                                <span style="font-size: 20px; color: gray;">Not finished</span>
                             </span>
                         </div>
                     </div>
@@ -77,50 +77,62 @@
     </div>
 </div>
 
-<div  class="row rounded m-5 d-flex flex-wrap">
-    <div style="min-width: 290px;" class="col-4 m-1">
-        <div class="row p-3 d-flex justify-content-center align-items-center">
-            <button routerLink="newtodo" class="btn btn-info">Add new To-Do</button>
+<div  class="row rounded d-flex flex-wrap justify-content-between mt-5">
+    <div style="min-width: 290px;" class=" col-xl-4 mt-1  col-xs-12">
+        <div class="row d-flex justify-content-center align-items-center">
+            <button style="background-color: #3AAFA9;" routerLink="newtodo" class="btn btn-info">
+                <i class="fa fa-plus mr-1 a"></i>New Todo
+            </button>
         </div>
     </div>
-    <div style="min-width: 290px;" class="col  m-1 d-flex justify-content-between align-items-center">
+    <div style="min-width: 290px;" class=" col-xl-4 mt-1  col-xs-12  flex-wrap justify-content-center  d-flex ">
+        
         <input type="date" placeholder="e.g. 2020-5-10" class="form-control col-10" />
         <button class="btn btn-success">Search</button>
+        <figcaption>Serach by date</figcaption>
     </div>
-    <div  style="min-width: 290px;"class="col  m-1 d-flex justify-content-between ml-5 align-items-center">
+    <div  style="min-width: 290px;"class="col-xl-4 mt-1  col-xs-12  d-flex justify-content-center   ">
+        
         <select class="custom-select col-8" id="inputGroupSelect01">
             <option selected>Order by</option>
             <option value="1">Date Ascending</option>
             <option value="2">Date Descending</option>
-            <option value="3">Date Ascending</option>
-            <option value="4">Date Descending</option>
+            <option value="3">Estimate Ascending</option>
+            <option value="3">Estimate Descending</option>
+            <option value="3">Number of items Ascending</option>
+            <option value="3">Number of items Descending</option>
           </select>
     </div>
 </div>
-<div style="background-color: #FFFFFF;" class="table-responsive rounded p-4">
-    <table class="table  table-borderless">
+<div style="background-color: #FFFFFF;" class="table-responsive rounded mt-5 p-4">
+    <table class="table  table-borderless table-hover">
         <thead class="table border-top-0">
-            <tr  class="table border-top-0">
+            <tr style="font-size: 20px;" class="table border-top-0 text-center">
               <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Date</th>
               <th scope="col">Estimate</th>
               <th scope="col">Items</th>
               <th scope="col">Done items</th>
-              <th scope="col"></th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr  style="font-size: 18px; cursor: pointer;" *ngFor="let item of niz; index as i ">
-              <th scope="row">{{i+1}}</th>
+            <tr routerLink="detail" style="font-size: 18px; cursor: pointer;" class="text-center " *ngFor="let item of niz; index as i ">
+              <th scope="row" >{{i+1}}</th>
               <td>{{item.title}}</td>
               <td>{{item.date}}</td>
               <td>{{item.estimate}}%</td>
               <td>3</td>
               <td>4</td>
-              <td style="width: 50px;"><img class="mr-3 mb-1" style="cursor: pointer;"  width="32px" src="/assets/todoComponent/penBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Edit Todo"/></td>
-              <td style="width: 50px;"><img routerLink="detail" class="mr-3" width="32px" style="cursor: pointer;" src="/assets/todoComponent/todoBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="To-Do List"/></td>
-              <td style="width: 50px;"><img width="27px" style="cursor: pointer;" src="/assets/todoComponent/xBlue.png" alt="img" data-toggle="tooltip" data-placement="top" title="Delete Todo"/></td>
+              <td style="width: 100px;" >
+                <span style="font-size: 28px; color: orange; cursor: pointer;"  class="mr-4">
+                    <i class="fa fa-edit"></i>
+                </span>
+                <span style="font-size: 28px; color: red; cursor: pointer;">
+                    <i class="fa fa-times-circle"></i>
+                </span>
+              </td>
             </tr>
           </tbody>
     </table>

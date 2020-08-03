@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SatPopoverModule } from '@ncstate/sat-popover';
 @Component({
   selector: 'app-habbitlist',
   templateUrl: './habbitlist.component.html',
@@ -8,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
 export class HabbitlistComponent implements OnInit {
   //months = [31,28,31,30,31,30,31,31,30,31,30,31]
   constructor() { console.log(this.check(this.niz[3])) }
+
+  weekDays = [{title:'Mo',color:1},
+              {title:'Tu',color:2},
+              {title:'We',color:0},
+              {title:'Th',color:2},
+              {title:'Fr',color:3},
+              {title:'Sa',color:2},
+              {title:'Su',color:1}];
+  
+  editWeekDay(i,n)
+  {
+    this.weekDays[i].color=n;
+  } 
+
   niz=[
     {
     title:"Get up in 5AM",
-    date:"10-2-2020",
+    date:"10/2/2020",
     dayFlag:true,
     weekFlag:false,
     specificDayInWeek:false,
@@ -20,7 +34,7 @@ export class HabbitlistComponent implements OnInit {
     },
     {
       title:"Meditation",
-      date:"10-2-2020",
+      date:"10/2/2020",
       dayFlag:false,
       weekFlag:true,
       specificDayInWeek:false,
@@ -29,7 +43,7 @@ export class HabbitlistComponent implements OnInit {
     },
     {
       title:"Cold Shower",
-      date:"10-2-2020",
+      date:"10/2/2020",
       dayFlag:false,
       weekFlag:false,
       specificDayInWeek:true,
@@ -38,7 +52,7 @@ export class HabbitlistComponent implements OnInit {
     },
     {
       title:"Read",
-      date:"10-2-2020",
+      date:"10/2/2020",
       dayFlag:false,
       weekFlag:false,
       specificDayInWeek:false,
@@ -55,15 +69,15 @@ export class HabbitlistComponent implements OnInit {
   {
     if(item.dayFlag)
     {
-      return "Remind every day"
+      return "Every day"
     }
     if(item.weekFlag)
     {
-      return "Remind "+item.day+" times a week"
+      return item.day+" times a week"
     }
     if(item.specificDayInWeek)
     {
-        let res = "Remind in: ";
+        let res = "Day in week: ";
         var pom:string = item.day.toString()
         if(pom.charAt(0)==='1'){res = res.concat('Mon ')}
         if(pom.charAt(1)==='1'){res = res.concat('Tue ')}
