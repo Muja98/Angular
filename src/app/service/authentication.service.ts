@@ -19,8 +19,6 @@ export class AuthenticationService {
           "email": email,
           "password": password
       }
-      console.log(data)
-
       this.http.post(URL+'/login', data).subscribe(
           response=>{
 
@@ -43,6 +41,7 @@ export class AuthenticationService {
   
   register(newUser)
   {
+   
       this.http.post(URL+'/register', newUser).subscribe(
           response=>{
             this.router.navigate(['/'])
@@ -60,15 +59,19 @@ export class AuthenticationService {
   getUser()
   {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user)
+   
     if(user)
     {
       return user;
     } 
   }
 
+  getUserById(id)
+  {
+      return this.http.get(URL+"/users/"+id);
+  }
+
+
+
+
 }
-
-
-
-

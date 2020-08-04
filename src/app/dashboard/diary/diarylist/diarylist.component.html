@@ -1,7 +1,7 @@
 <div class="container-fluid  rounded">
     <div style="background-color: #ffffff;" class="row justify-content-bettwen rounded">
         <div  style="font-size: 42px; font-weight: 700; color: #3FAFA9; " class="col-xl-6 col-xs-12 d-flex justify-content-center align-items-center">
-            Stefan's Journal
+            {{user.name}}'s Journal
         </div>
         <div class="col-xl-6 col-xs-12 d-flex justify-content-center">
             <div style="border-color: transparent;" class="card col-4">
@@ -13,7 +13,7 @@
                             </div>
                             <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                                 <span >
-                                    <h2>4</h2>
+                                    <h2>{{niz.length}}</h2>
                                     <span style="font-size: 20px; color: gray;">Entries</span>
                                 </span>
                             </div>
@@ -38,13 +38,13 @@
     </div>
     <div style="min-width: 290px;" class=" col-xl-4 mt-1  col-xs-12  flex-wrap justify-content-center  d-flex ">
         
-        <input type="date" placeholder="e.g. 2020-5-10" class="form-control col-10" />
-        <button class="btn btn-success">Search</button>
+        <input [(ngModel)]="dateSearch" type="date" placeholder="e.g. 2020-5-10" class="form-control col-10" />
+        <button class="btn btn-success" (click)="handleSearch()">Search</button>
         <figcaption>Serach by date</figcaption>
     </div>
     <div  style="min-width: 290px;"class="col-xl-4 mt-1  col-xs-12  d-flex justify-content-center   ">
         
-        <select class="custom-select col-8" id="inputGroupSelect01">
+        <select (change)="setValue($event.target.value)" class="custom-select col-8" id="inputGroupSelect01">
              <option selected>Order by</option>
              <option value="1">Date Ascending</option>
              <option value="2">Date Descending</option>
@@ -65,18 +65,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr routerLink="/dashboard/diary/detail" class="text-center"  style="font-size: 18px; cursor: pointer;" *ngFor="let item of niz; index as i ">
-              <th scope="row">{{i+1}}</th>
-              <td>{{item.title}}</td>
-              <td>{{item.date}}</td>
-              <td>
-                <span style="font-size: 28px; color: orange; cursor: pointer;"  class="mr-4">
+            <tr class="text-center"  style="font-size: 18px; cursor: pointer;" *ngFor="let item of niz; index as i " >
+           
+              <th *ngIf="i>=from && i<to" [routerLink]="['/dashboard/diary/detail',item.id]" scope="row">{{i+1}}</th>
+              <td *ngIf="i>=from && i<to"  [routerLink]="['/dashboard/diary/detail',item.id]">{{item.Title}}</td>
+              <td *ngIf="i>=from && i<to" [routerLink]="['/dashboard/diary/detail',item.id]">{{item.Date}}</td>
+              <td *ngIf="i>=from && i<to" >
+                <span [routerLink]="['/dashboard/diary',item.id]" style="font-size: 28px; color: orange; cursor: pointer;"  class="mr-4">
                   <i class="fa fa-edit"></i>
                 </span>
-                <span style="font-size: 28px; color: red; cursor: pointer;">
+                <span (click)="handleDelete(item.id)" style="font-size: 28px; color: red; cursor: pointer;">
                     <i class="fa fa-times-circle"></i>
                 </span>
                </td>
+    
             </tr>
           </tbody>
     </table>
@@ -85,7 +87,7 @@
 
 
 <div class="container d-flex justify-content-center  mt-5">
-    <ngb-pagination [collectionSize]="70"  aria-label="Default pagination">
+    <ngb-pagination [(page)]="page" [collectionSize]="itemsCount" (pageChange)="handlePageNumber(page)"  [pageSize]="5"  aria-label="Default pagination">
        
     </ngb-pagination>
 </div>

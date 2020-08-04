@@ -2,21 +2,21 @@
 
     <div style="font-size: 30px; font-weight: 700; background-color: #3AAFA9;" class="row rounded-top p-3 mt-4 d-flex justify-content-around">
         <div class="col-xl-4 col-xs-12 ">
-            Title: &nbsp;<span style="color: #F0F0EF;;">Monday</span> 
+            Title: &nbsp;<span style="color: #F0F0EF;;">{{title}}</span> 
         </div>
         <div class="col-xl-4 col-xs-12 ">
-            Date: &nbsp;<span style="color: #F0F0EF;;">5/10/2020</span> 
+            Date: &nbsp;<span style="color: #F0F0EF;;">{{date}}</span> 
         </div>
     </div>
    
     <div class="row pl-5 pr-5 mt-4">
        
-            <p style="font-size: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut venenatis tellus in metus vulputate. Nec ullamcorper sit amet risus nullam. Convallis convallis tellus id interdum velit laoreet id. Lectus nulla at volutpat diam ut venenatis tellus in metus. Montes nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Adipiscing diam donec adipiscing tristique risus. Interdum velit laoreet id donec ultrices tincidunt arcu. Velit ut tortor pretium viverra. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae. Est ultricies integer quis auctor elit sed vulputate mi. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Lectus quam id leo in vitae turpis massa. At volutpat diam ut venenatis tellus in metus vulputate. Vitae purus faucibus ornare suspendisse sed nisi. Risus quis varius quam quisque. Vitae elementum curabitur vitae nunc sed velit dignissim. Vulputate ut pharetra sit amet aliquam id.</p>
+            <p style="font-size: 20px;">{{text}}</p>
 
     </div>
     <div  class="row  d-flex justify-content-center mt-5">
-        <button style="height: 40px; background-color: #3AAFA9;" routerLink="/dashboard/newdiary" routerLinkActive="router-link-active"  class="btn btn-secondary ml-3">Edit</button>
-        <button style="height: 40px;" routerLink="dashboard" routerLinkActive="router-link-active"  class="btn btn-secondary ml-3">Return</button>
+        <button style="height: 40px; background-color: #3AAFA9;" [routerLink]="['/dashboard/diary',id]" routerLinkActive="router-link-active"  class="btn btn-secondary ml-3">Edit</button>
+        <button style="height: 40px;" routerLink="/dashboard/diary" routerLinkActive="router-link-active"  class="btn btn-secondary ml-3">Return</button>
     </div>
   
 </div>

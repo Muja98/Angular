@@ -44,7 +44,8 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
         {path:'habbit/detail',component:HabbitdetailComponent},
         {path:'habbit',component:HabbitComponent},
         {path:'diary',component:DiaryComponent},
-        {path:'diary/detail',component:DiarydetailComponent},
+        {path:'diary/detail/:idDiary',component:DiarydetailComponent},
+        {path:'diary/:idDiary',component:DiaryeditorComponent},
         {path:'newdiary',component:DiaryeditorComponent}
       ]
       }

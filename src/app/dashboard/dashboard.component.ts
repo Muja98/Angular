@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
+import {AuthenticationService }from '../service/authentication.service';
+import {Router} from '@angular/router'
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent{
-
+export class DashboardComponent implements OnInit{
+  constructor(private service: AuthenticationService,private router:Router) { }
+  user: any;
+  ngOnInit(): void {
+  
+    this.service.getUserById(this.service.getUser().sub).subscribe(response =>{this.user = response})
+    
+  }
   pomWidth
   pomwidth2
   onResized2(event: ResizedEvent)
@@ -24,7 +33,10 @@ export class DashboardComponent{
       this.mobile = true;
     }
   }
-
+  HandleLogOut( ){
+    this.service.logout();
+    this.router.navigate(['/'])
+  }
   ngonchanfe
   mobile = true;
   public width = "280px"

@@ -8,14 +8,14 @@
         </div>
         <hr style="height:2px"/>
         <div class="row d-flex justify-content-center pt-4">
-            <div class="col-6">
+            <div class="col-xl-6 col-xs-12">
                 <figcaption>E-mail Adress</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.email"  style="height: 45px;" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <figcaption class="text-danger">{{error.email}}</figcaption>
             </div>
-            <div class="col-6">
+            <div class="col-xl-6 col-xs-12">
                 <figcaption>Password</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.password"  style="height: 45px;" type="password" class="form-control w-75" aria-label="Username" aria-describedby="basic-addon1">
@@ -24,14 +24,14 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center pt-4">
-            <div class="col-6">
+            <div class="col-xl-6 col-xs-12">
                 <figcaption>Name</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.name" style="height: 45px;" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <figcaption class="text-danger">{{error.name}}</figcaption>
             </div>
-            <div class="col-6">
+            <div class="col-xl-6 col-xs-12">
                 <figcaption>Surname</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.surname" style="height: 45px;" type="text" class="form-control w-75" aria-label="Username" aria-describedby="basic-addon1">
@@ -40,14 +40,14 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center pt-4">
-            <div class="col-6">
+            <div class="col-xl-6 col-xs-12">
                 <figcaption>Location</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.location"  style="height: 45px;" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <figcaption class="text-danger">{{error.location}}</figcaption>
             </div>
-            <div class="col-6">
+            <div class="col-xl-6 col-xs-12">
                 <figcaption>Age</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.age"  style="height: 45px;" type="number" min="18" class="form-control w-75" aria-label="Username" aria-describedby="basic-addon1">
@@ -55,9 +55,19 @@
                 <figcaption class="text-danger">{{error.age}}</figcaption>
             </div>
         </div>
+        <div class="row ">
+           
+            <div class="col-xl-6 col-xs-12">
+                <figcaption>Image:</figcaption>
+                <input type="file"  (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg, .pdf" />
+                <img *ngFor="let item of base64textString" style="width: 70px;"  src={{item}} alt="" id="img">
+            </div>
+        </div>
+       
         
         <div class="row d-flex aling-items-center justify-content-center pt-4">
             <button style="height:60px; width:150px" type="button" class="btn btn-info"><h5 class="mt-1" (click)="register()">Register</h5></button>
         </div>
     </div>
+    
 </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DiaryService } from './../../../service/diary.service';
+import {AuthenticationService }from './../../../service/authentication.service';
+import {Router, ActivatedRoute} from '@angular/router'
 @Component({
   selector: 'app-diaryeditor',
   templateUrl: './diaryeditor.component.html',
@@ -7,11 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiaryeditorComponent implements OnInit {
 
+  constructor(private service: DiaryService, private aserice: AuthenticationService,private router:Router , private aroute:ActivatedRoute) { }
+
+  private id:number
   public title:string="";
   public date:string="";
   public text:string="";
   public validationFlag: boolean = false;
-
+  public editFlag: boolean = false;
   error={
     title:"",
     date:"",
@@ -26,10 +31,51 @@ export class DiaryeditorComponent implements OnInit {
     if(this.title===""||this.date===""||this.text===""){this.validationFlag=true}else{this.validationFlag=false}
 
     if(this.validationFlag===true){return;}
+    else
+    { 
+     
+        if(this.editFlag==true)
+        {
+          let diary={
+
+            Date:this.date,
+            Title:this.title,
+            Text:this.text,
+            userId: this.aserice.getUser().sub
+          } 
+          this.service.editDiary(diary,this.id)
+
+        }
+        else
+        {
+          let diary={
+            Date:this.date,
+            Title:this.title,
+            Text:this.text,
+            userId: this.aserice.getUser().sub
+          } 
+          this.service.AddnewDiary(diary)
+        }
+     
+        this.router.navigate(['/dashboard/diary'])
+    }
   }
-  constructor() { }
+
 
   ngOnInit(): void {
+    this.aroute.paramMap.subscribe(params=>{
+
+    if(params.get('idDiary')===null){return}
+    this.editFlag = true;
+     this.service.getDiaryByIdDiary(parseInt(params.get('idDiary'))).subscribe(
+       (x:any)=>{
+         this.id = parseInt(x.id)
+         this.text = x.Text
+         this.title = x.Title
+         this.date = x.Date
+       }
+     )
+    })
   }
 
 }

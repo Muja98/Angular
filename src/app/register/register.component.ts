@@ -15,7 +15,8 @@ export class RegisterComponent{
     name:'',
     surname:'',
     location:'',
-    age:18
+    age:18,
+    image:""
   }
 
   public error ={
@@ -27,6 +28,25 @@ export class RegisterComponent{
     age:''
   }
   constructor(private service: AuthenticationService) { }
+
+  base64textString = [];
+
+  onUploadChange(evt: any) {
+    const file = evt.target.files[0];
+  
+    if (file) {
+      const reader = new FileReader();
+  
+      reader.onload = this.handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+  
+  handleReaderLoaded(e) {
+    this.base64textString.push('data:image/png;base64,' + btoa(e.target.result));
+    this.user.image=this.base64textString[0];
+
+  }
 
   register()
   {
@@ -48,6 +68,8 @@ export class RegisterComponent{
       }
     this.service.register(this.user);
   }
+
+  
   
 
 }
