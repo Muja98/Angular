@@ -2,21 +2,25 @@
         <div style="color: #3AAFA9; font-size: 32px; font-weight: 700;" class="row justify-content-between pl-5 pr-5">
             <div class="col-xl-6 col-xs-12">
                 <div >Title:</div>
-                <input type="text" class="form-control col-8" style="height: 40px; font-size: 20px; font-weight: 600;" placeholder="e.g. diary for Monday">
+                <input [(ngModel)]="title" type="text" class="form-control col-8" style="height: 40px; font-size: 20px; font-weight: 600;" placeholder="e.g. diary for Monday">
+                <div style="font-size: 18px; font-weight: 500; color: red;">{{error.title}}</div>
             </div>
             <div class="col-xl-6 col-xs-12">
                 <div  >Date:</div>
-                <input type="date" class="form-control col-8" style="height: 40px; font-size: 20px; font-weight: 600;">
+                <input [(ngModel)]="date" type="date" class="form-control col-8" style="height: 40px; font-size: 20px; font-weight: 600;">
+                <div style="font-size: 18px; font-weight: 500; color: red;">{{error.date}}</div>
             </div>
+
         </div>
 
         <div class="row pl-5 pr-5 mt-4">
-            <textarea  style="border-color: transparent; resize:none;" class="notes"></textarea>
+            <textarea [(ngModel)]="text" style="border-color: transparent; resize:none;" class="notes"></textarea>
+           
         </div>
-
+        <div class="validation">{{error.text}}</div>
         <div class="container col-7 mt-5">
             <div class="row   d-flex justify-content-center ">
-                <button style="height: 40px; background-color: #3AAFA9;" class="btn btn-success">Add new entry</button>
+                <button style="height: 40px; background-color: #3AAFA9;" class="btn btn-success" (click)="handleAddNewEntry()">Add new entry</button>
                 <button style="height: 40px;" routerLink="/dashboard/diary" routerLinkActive="router-link-active"  class="btn btn-secondary ml-3">Cancel</button>
             </div>
         </div>

@@ -19,9 +19,9 @@ export class LoginComponent{
 
   logIn()
   {
-    if(this.email.length===0){this.error.email = "Niste uneli E-mail!"}
+    if(this.email.length===0){this.error.email = "Please fill the E-mail input "}
     else{this.error.email = ""}
-    if(this.password.length===0){this.error.password = "Niste uneli šifru!"} 
+    if(this.password.length===0){this.error.password = "Please fill the Password input"} 
     else{this.error.password = ""}
 
     if(this.email.length===0 || this.password.length==0)return;

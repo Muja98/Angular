@@ -30,12 +30,12 @@ export class RegisterComponent{
 
   register()
   {
-    if(this.user.email.length===0){this.error.email = "Niste uneli E-mail"}else {this.error.email=""};
-    if(this.user.password.length===0){this.error.password = "Niste uneli sifru"}else {this.error.password=""}
-    if(this.user.name.length===0){this.error.name = "Niste uneli ime"}else{this.error.name=""}
-    if(this.user.surname.length===0){this.error.surname = "Niste uneli prezime"}else {this.error.surname=""}
-    if(this.user.location.length===0){this.error.location = "Niste uneli lokaciju"}else {this.error.location=""}
-    if(this.user.age === null ){this.error.age = "Niste uneli godine"}else {this.error.age=""}
+    if(this.user.email.length===0){this.error.email = "Please fill the E-mail input"}else {this.error.email=""};
+    if(this.user.password.length===0){this.error.password = "Please fill the Password input"}else {this.error.password=""}
+    if(this.user.name.length===0){this.error.name = "Please fill the Name input"}else{this.error.name=""}
+    if(this.user.surname.length===0){this.error.surname = "Please fill the Surname input"}else {this.error.surname=""}
+    if(this.user.location.length===0){this.error.location = "Please fill the Location input"}else {this.error.location=""}
+    if(this.user.age === null ){this.error.age = "Please fill the Age input"}else {this.error.age=""}
     if(this.user.email.length===0||
        this.user.password.length===0||
        this.user.name.length===0||

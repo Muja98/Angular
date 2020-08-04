@@ -32,32 +32,38 @@
     
 </div>
     <div  style="width: 100%; z-index: 3; background-color: #F0F0EF; -webkit-background-size: cover; background-size: cover; " class="d-flex flex-column">
-        <div style="height: 60px; width: 100%; background-color: #ffffff; ;"  class="m-0">
+        <div style="height: 60px;; background-color: #ffffff; ;"  class="m-0 container-fluid">
             <div class="row d-flex justify-content-between">
-                <div style="margin-left: 45px;" class="col-2">
+                <div style="margin-left: 10px;" class="col-2">
                     <p style="font-size: 36px; font-weight: 800; cursor: pointer;">BeDo<span style="color: #3AAFA9;">Have</span></p>
                 </div>
-                <!-- <div  class="col-2  d-flex justify-content-center align-items-center mb-1">
-                    <div class="col-3 ">
-                        <img  class="rounded-circle img-fluid" width="70px" src="/assets/profile.jpg"  alt="img" />
-                    </div>
-                    <div style="font-size: 20px; font-weight: 500;" class="col-9">
-                        Stefan Stamenković 
-                    </div>
-                    
-                </div> -->
+                <div style="width: 100px; margin-right: 60px;"  class="  d-flex align-items-start ">
+                    <div ngbDropdown class="d-inline-block">
+                        <button style=" color: black; outline: none !important; box-shadow: none; margin-bottom: 10px;" class="btn " id="dropdownBasic1" ngbDropdownToggle>
+                            <img style="width: 50px;" src="/assets/profile.jpg" alt="img" class="rounded-circle">
+                        </button>
+                        <div style="width: 200px;" ngbDropdownMenu aria-labelledby="dropdownBasic1 rounded mr-5">
+                          <p style="font-size: 18px; font-weight: 500;" class="pl-3">Signed as: <b style="color: #3AAFA9;">Stefan </b></p>
+                            <hr/>
+                          <button style="font-size: 18px; font-weight: 500;" ngbDropdownItem>Profile</button>
+                          <button style="font-size: 18px; font-weight: 500;" ngbDropdownItem>Log out</button>
+                        </div>
+                      </div>
+                </div>
+                  
             </div>
         </div>
         <div class="p-5">
-                <router-outlet></router-outlet>
-
-
-                <div class="container">
-                    <input type="file" (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg, .pdf" />
-                    <img *ngFor="let item of base64textString" style="width: 300px;"  src={{item}} alt="" id="img">
-                </div>
-                <!-- <img ng-src="data:image/JPEG;base64,{{vm.image}}"> -->
-        </div>  
+            <router-outlet></router-outlet>
+            <!-- <div class="container">
+                <input type="file" (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg, .pdf" />
+                <img *ngFor="let item of base64textString" style="width: 70px;"  src={{item}} alt="" id="img">
+            </div> -->
+           
+                 
+      
+              
+     
     </div>
 </div>
 

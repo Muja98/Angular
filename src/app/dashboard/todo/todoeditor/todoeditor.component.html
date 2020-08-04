@@ -9,11 +9,13 @@
 <div class="row d-flex flex-row justify-content-between">
         <div style="min-width: 300px;" class="col-5 d-flex flex-column p-5">
             <p style="font-weight: 700; font-size: 30px; color: #3AAFA9;">To-Do Title</p>
-            <input type="text" style="height: 40px; font-size: 20px; font-weight: 500;" class="form-control" placeholder="e.g. to-do for weekend"/>
+            <input [(ngModel)]="title" type="text" style="height: 40px; font-size: 20px; font-weight: 500;" class="form-control" placeholder="e.g. to-do for weekend"/>
+            <div class="validation">{{error.title}}</div>
         </div>
         <div style="min-width: 300px; " class="col-5 d-flex flex-column rounded p-5 ">
             <p style="font-weight: 700; font-size: 30px; color: #3AAFA9;">Date</p>
-            <input type="date" style="height: 40px; font-size: 20px; font-weight: 500; " class="form-control" placeholder="e.g. to-do for weekend"/>
+            <input [(ngModel)]="date"  type="date" style="height: 40px; font-size: 20px; font-weight: 500; " class="form-control" placeholder="e.g. to-do for weekend"/>
+            <div class="validation">{{error.date}}</div>
         </div>
 </div>
 
@@ -34,7 +36,7 @@
                              <input *ngIf="item.checked" [(ngModel)]="updateItem.text"  class="form-control  m-1  "/>
                 </div>
                 <span *ngIf="!item.checked && !publickChecked"   class="nested col-4 d-flex justify-content-end"> 
-                    <span style="cursor: pointer;" *ngIf="!item.habbit" (click)="open(content,item,i)" style="font-size: 28px; color: orange; cursor: pointer;"  class="mr-4">
+                    <span style="cursor: pointer;" *ngIf="!item.habbit" (click)="open(item,i)" style="font-size: 28px; color: orange; cursor: pointer;"  class="mr-4">
                         <i class="fa fa-edit"></i>
                     </span>
                     <span style="cursor: pointer;" (click)="handelDeleteTask(i)"  style="font-size: 28px; color: red; cursor: pointer;">
@@ -52,6 +54,7 @@
                 </span>
             </div>
         </div>
+    
         <!--ADD NEW TASK TEXTAREA-->
 
         <div *ngIf="flag===true  && !publickChecked" class="container col-7  p-3">
@@ -103,7 +106,7 @@
     <div style="font-weight: 700; font-size: 30px; color: #3ea39e;"  class=" justify-content-center p-2">Note</div>
 
     <div style="width: 100%; height: 150px;" class="p-2">
-        <textarea placeholder="e.g. this todo is unique because..."  class="form-control rounded  p-3"   style="font-size: 24px;  width:100%; height: 82px; max-height: 82px; min-height: 82px; height: 130px; min-height: 130px; overflow: auto; resize: none;" ></textarea>
+        <textarea [(ngModel)]="note"  placeholder="e.g. this todo is unique because..."  class="form-control rounded  p-3"   style="font-size: 24px;  width:100%; height: 82px; max-height: 82px; min-height: 82px; height: 130px; min-height: 130px; overflow: auto; resize: none;" ></textarea>
     </div>
 </div>
 
@@ -113,36 +116,13 @@
 
 <div class="container col-7 mt-5">
     <div class="row   d-flex justify-content-center ">
-        <button style="height: 40px; background-color: #3AAFA9;" class="btn btn-success">Add new To-Do</button>
+        <button style="height: 40px; background-color: #3AAFA9;" class="btn btn-success" (click)="HandleAddNewTodo()">Add new To-Do</button>
         <button style="height: 40px;" routerLink="/dashboard/todo" class="btn btn-secondary ml-3">Cancel</button>
     </div>
 </div>
 
 <!--END OF BUTTONS-->
 
-<!--MODAL-->
 
-<ng-template #content let-modal>
-    <div style="background-color: #3AAFA9;" class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Update item</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <input [(ngModel)]="updateItem" name="first" class="form-control col-10" >
-          <div class="input-group">
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); handleEditTask()">Save</button>
-    </div>
-</ng-template>
-  
-<!--END OF MODAL-->
 
 </div>

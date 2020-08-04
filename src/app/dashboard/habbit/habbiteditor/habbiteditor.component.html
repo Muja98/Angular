@@ -3,11 +3,13 @@
     <div style="color: #3AAFA9; font-size: 30px; font-weight: 700;" class="row justify-content-between pl-5 pr-5">
         <div class="col-xl-6 col-xs-12">
             <div>Title:</div>
-            <input type="text" class="form-control col-10" style="height: 40px; min-width: 150px; font-size: 20px; font-weight: 600;" placeholder="e.g. get up early">
+            <input type="text" [(ngModel)]="title" class="form-control col-10" style="height: 40px; min-width: 150px; font-size: 20px; font-weight: 600;" placeholder="e.g. get up early">
+            <div class="validation mr-5">{{error.title}}</div>
         </div>
         <div class="col-xl-6 col-xs-12">
             <div>Date:</div>
-            <input type="date" class="form-control col-10" style="height: 40px; font-size: 20px; font-weight: 600;" placeholder="e.g. get up early">
+            <input type="date" [(ngModel)]="date" class="form-control col-10" style="height: 40px; font-size: 20px; font-weight: 600;" placeholder="e.g. get up early">
+            <div class="validation">{{error.date}}</div>
         </div>
     </div>
     <div style="color: #3AAFA9; font-size: 30px; font-weight: 700;" class="row justify-content-between mt-5 pl-5 pr-5">
@@ -25,22 +27,28 @@
             </select>
             <div class="row d-flex justify-content-center">
                 <div *ngIf="value==1" class="mt-5 mr-5" style="color: #3AAFA9; font-size: 24px; font-weight: 600;">
-                    you will be remined every day
+                    habbit will appear every day
                 </div>
+
                 <div *ngIf="value==2" class="d-flex mt-5 mr-5 " style="font-size: 24px; font-weight: 600;">
-                    Remind&nbsp;&nbsp;<input style="color: #3AAFA9;width: 45px;"  type="number" min="0" max="6">&nbsp;&nbsp;times a week
+                    Habbit will appear&nbsp;&nbsp;<input style="color: #3AAFA9;width: 45px;" [(ngModel)]="specificTimeInWeek"   type="number" min="0" max="6">&nbsp;&nbsp;times a week
                 </div>
+                <div *ngIf="value==2" class="validation">{{error.days1}}</div>
+
                 <div *ngIf="value==3" class="d-flex mt-5 mr-5 " style="font-size: 24px; font-weight: 600;">
                     <span style="cursor: pointer;" class="ml-3" *ngFor="let item of weekDays"> 
                         <div (click)="check(item)" *ngIf="item.checked===true" class="d-flex justify-content-center rounded p-1" style="background-color: #3AAFA9; color: white;">{{item.title}}</div>
                         <span (click)="check(item)" *ngIf="item.checked===false">{{item.title}}</span>
                     </span>
+                    
                 </div>
-                <div *ngIf="value==4" class="d-flex mt-4 mr-5 flex-wrap  " style="font-size: 24px; font-weight: 600; width: 300px;">
+                <div style="width: 100%;"  *ngIf="value==3" class="validation">{{error.days2}}</div>
+                <div  *ngIf="value==4" class="d-flex mt-4 mr-5 flex-wrap  " style="font-size: 24px; font-weight: 600; width: 300px;">
                     <span  style="width: 25px; cursor: pointer;" class="ml-3" *ngFor="let item of monhtns">
                         <div (click)="check(item)" *ngIf="item.checked===true" class="d-flex justify-content-center rounded" style="background-color: #3AAFA9; color: white; margin-top: 1px; width: 30px;">{{item.index}}</div>
                         <span (click)="check(item)" *ngIf="item.checked===false">{{item.index}}</span>
                     </span>
+                    <div class="validation">{{error.days3}}</div>
                 </div>
             </div>
         </div>
@@ -49,7 +57,7 @@
    
     <div class="container col-7 mt-5">
         <div class="row   d-flex justify-content-center ">
-            <button style="height: 40px; background-color: #3AAFA9;" class="btn btn-success">Add new Habbit</button>
+            <button style="height: 40px; background-color: #3AAFA9;" (click)="HandleAddNewHabbit()" class="btn btn-success">Add new Habbit</button>
             <button style="height: 40px;"routerLink="/dashboard/habbit"  class="btn btn-secondary ml-3">Cancel</button>
         </div>
     </div>

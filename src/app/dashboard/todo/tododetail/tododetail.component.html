@@ -26,7 +26,7 @@
         <div class="card-body">
             <div class="card-block">
                 <div  style="font-size: 28px; font-weight: 500;" class="media d-flex justify-content-center">
-                  <span style="color: #3AAFA9;" class="mr-2">Tasks:</span> 10
+                  <span style="color: #3AAFA9;" class="mr-2">Tasks:</span> 9
                 </div>
             </div>
         </div>
@@ -54,9 +54,11 @@
   
   <div class="row p-5">
     <h3 style="color: #3AAFA9;">Note:</h3>
-    <textarea class="p-3" style="width: 100%; min-height: 150px; max-height: 150px; resize: none;">sdasd</textarea>
+    <textarea (click)="HandleChangeNote()" [(ngModel)]="note" placeholder="e.g. it was rough" class="p-3" style="width: 100%; min-height: 150px; max-height: 150px; resize: none; font-size: 24px;"></textarea>
   </div>
   <div class="modal-footer">
-    <button type="button" style="background-color: #3AAFA9;" class="btn btn-info mr-3" (click)="Exit()" >Back</button>
+    <button *ngIf="activateFlag" type="button" class="btn btn-info mr-3" (click)="handleSaveClick()" >Save Changes</button>
+    <button *ngIf="activateFlag" type="button" style="background-color: #3AAFA9;" class="btn btn-info mr-3" (click)="handleAbortClick()"  >Abort</button>
+    <button  type="button" style="background-color: #3AAFA9;" class="btn btn-info mr-3" (click)="Exit()" >Back</button>
   </div>
 </div>

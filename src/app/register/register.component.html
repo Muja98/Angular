@@ -3,20 +3,20 @@
     <div style="background-color: whitesmoke;" className="zika" class="zika shadow-lg p-3 mb-5 rounded container" >
         <div class="row">
             <div class="col d-flex aling-items-center justify-content-center">
-                <h1>Registruj se</h1>
+                <h1>Register</h1>
             </div>
         </div>
         <hr style="height:2px"/>
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-6">
-                <figcaption>E-mail Adresa</figcaption>
+                <figcaption>E-mail Adress</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.email"  style="height: 45px;" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <figcaption class="text-danger">{{error.email}}</figcaption>
             </div>
             <div class="col-6">
-                <figcaption>Šifra</figcaption>
+                <figcaption>Password</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.password"  style="height: 45px;" type="password" class="form-control w-75" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
@@ -25,14 +25,14 @@
         </div>
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-6">
-                <figcaption>Ime</figcaption>
+                <figcaption>Name</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.name" style="height: 45px;" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <figcaption class="text-danger">{{error.name}}</figcaption>
             </div>
             <div class="col-6">
-                <figcaption>Prezime</figcaption>
+                <figcaption>Surname</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.surname" style="height: 45px;" type="text" class="form-control w-75" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
@@ -41,14 +41,14 @@
         </div>
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-6">
-                <figcaption>Mesto</figcaption>
+                <figcaption>Location</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.location"  style="height: 45px;" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <figcaption class="text-danger">{{error.location}}</figcaption>
             </div>
             <div class="col-6">
-                <figcaption>Godine</figcaption>
+                <figcaption>Age</figcaption>
                 <div class="input-group mb-3 ">
                     <input [(ngModel)]="user.age"  style="height: 45px;" type="number" min="18" class="form-control w-75" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
@@ -57,7 +57,7 @@
         </div>
         
         <div class="row d-flex aling-items-center justify-content-center pt-4">
-            <button style="height:60px; width:150px" type="button" class="btn btn-info"><h5 class="mt-1" (click)="register()">Registruj se</h5></button>
+            <button style="height:60px; width:150px" type="button" class="btn btn-info"><h5 class="mt-1" (click)="register()">Register</h5></button>
         </div>
     </div>
 </div>

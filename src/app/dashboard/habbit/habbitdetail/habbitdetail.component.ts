@@ -10,6 +10,27 @@ export class HabbitdetailComponent implements OnInit {
 
   constructor() {}
   date:Date = new Date();
+  comment:string = "";
+  validationFlag:boolean=false;
+
+  comments:any =[
+    {title:"prvi komentar",date:"23/4/2020"},
+    {title:"drugi komentar",date:"21/2/2020"},
+    {title:"treci komentar",date:"20/1/2020"}
+  ]
+
+  error ={
+    comment:""
+  }
+
+  handleAddComment()
+  {
+    if(this.comment===""){this.error.comment="Please fill the comment input";this.validationFlag=true}else{this.error.comment = "";this.validationFlag=false}
+    let date = this.date.getDate()+"/"+(this.date.getMonth()+1)+"/"+this.date.getFullYear()
+    if(this.validationFlag){return}
+    this.comments.push({title:this.comment,date:date})
+    this.comment = "";
+  }
   
   weekDays=  [
   {title:"Mon",checked:true},
