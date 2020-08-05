@@ -2,38 +2,54 @@
 
     <div style="font-size: 32px; font-weight: 700; background-color: #3AAFA9;" class="row rounded-top p-4 mt-4 d-flex justify-content-around">
         <div class="col-xl-4 col-xs-12 ">
-            Title: &nbsp;<span style="color: #F0F0EF;">Workout</span> 
+            Title: &nbsp;<span style="color: #F0F0EF;">{{title}}</span> 
         </div>
         <div class="col-xl-4 col-xs-12 ">
-            Date: &nbsp;<span style="color: #F0F0EF;">5/10/2020</span> 
+            Date: &nbsp;<span style="color: #F0F0EF;">{{date2}}</span> 
         </div>
     </div>
     <div  style="color: #3AAFA9; font-size: 32px; font-weight: 700;"  class="row mt-5 d-flex justify-content-around">
         <div class="col-xl-4 col-xs-12">
             <div >Description:</div>
-            <p class="p-1" style="color: gray;  font-size: 20px; font-weight: 700;">
-                I want to do this because i want to build some muscles i look like pritka za paradajz
+            <p *ngIf="description===''" class="p-1" style="color: gray;  font-size: 20px; font-weight: 700;">
+                It doesn't have any description
             </p>
-            <!-- <textarea type="text" disabled  class="form-control col-12 pl-1" style="resize:none; background-color: #ffffff; border-color: transparent; min-height: 120px; max-height: 120px;  font-size: 20px; font-weight: 700;" placeholder="e.g. I want to do this because..."></textarea> -->
+            <p class="p-1" style="color: gray;  font-size: 20px; font-weight: 700;">
+                {{description}}
+            </p>
         </div>
         <div class="col-xl-4 col-xs-12 ">
             <div >Day's to remind:</div>
-            <div  class="d-flex mt-5 mr-5 flex-wrap" style="font-size: 20px; font-weight: 500;">
-                <span style="cursor: pointer;" class="ml-3" *ngFor="let item of weekDays"> 
-                    <div *ngIf="item.checked===true" class="d-flex justify-content-center rounded p-1" style="background-color: #3AAFA9; color: white;">{{item.title}}</div>
-                    <span *ngIf="item.checked===false" style="color: black;">{{item.title}}</span>
-                </span>
+            <div class="row d-flex justify-content-center">
+                <div *ngIf="value==1" class="mt-2 w-100 d-flex ml-5 pl-5" style="color: gray; font-size: 24px; font-weight: 600; ">
+                    <p>Every day</p>
+                </div>
+                <div *ngIf="value==2" class="mt-2 w-100" style="color: gray; font-size: 24px; font-weight: 600;">
+                    <p>Habbit will appear {{dys}} times a week</p>
+                </div>
+                <div *ngIf="value==3" class="d-flex mt-5 w-100 " style="font-size: 24px; font-weight: 600; margin-right: 140px;">
+                    <span style="cursor: pointer;" class="ml-3" *ngFor="let item of weekDays"> 
+                        <div *ngIf="item.checked===true" class="d-flex justify-content-center rounded p-1" style="background-color: #3AAFA9; color: white;">{{item.title}}</div>
+                        <span *ngIf="item.checked===false">{{item.title}}</span>
+                    </span>
+                </div>
+                <div  *ngIf="value==4" class="d-flex  mt-4 flex-wrap  " style="font-size: 24px; font-weight: 600; width: 300px; margin-right: 140px;">
+                    <span  style="width: 25px; cursor: pointer;" class="ml-3" *ngFor="let item of monhtns">
+                        <div *ngIf="item.checked===true" class="d-flex justify-content-center rounded" style="background-color: #3AAFA9; color: white; margin-top: 1px; width: 30px;">{{item.index}}</div>
+                        <span  *ngIf="item.checked===false">{{item.index}}</span>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
     
     <div class="row  d-flex flex-column align-items-center mt-5" style="color: #3AAFA9; font-size: 32px; font-weight: 700; ">
-        <div style="background-color: #3AAFA9; color: #F0F0EF;" class="col-xl-10  col-xs-12 rounded-top p-3">Comment's:</div>
+        <div style="background-color: #3AAFA9; color: #F0F0EF;" class="col-xl-10  col-xs-12 rounded-top p-2">Comment's:</div>
         <div class="col-xl-10  col-xs-12 border  d-flex flex-column align-items-baseline ">
                <div *ngIf="comments.length==0" style="font-size: 20px;" class="d-flex justify-content-center p-3">You don't have any comment on this habbit</div>
                 <div *ngFor="let item of comments"  style="font-size: 18px; " class="row flex-column ml-4 mt-2">
-                    <div class="row" style="color: black;" class="row ml-1">{{item.date}}</div>
-                    <p>{{item.title}}</p>
+                    <div class="row" style="color: black;" class="row ml-1">{{item.Date}}</div>
+                    <p>{{item.Comment}}</p>
                 </div>
 
         </div>

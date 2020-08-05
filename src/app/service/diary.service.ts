@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import URL from '../../apis/api'
 import {HttpClient} from '@angular/common/http';
+import { computeMsgId } from '@angular/compiler';
 
 
 @Injectable({
@@ -30,8 +31,8 @@ export class DiaryService {
 
   AddnewDiary(newDiary)
   { 
-      console.log(newDiary)
-      this.http.post('http://localhost:3000/diary', newDiary).subscribe( response=>{} )
+      
+      this.http.post(URL+'/diary', newDiary).subscribe( response=>{} )
   }
 
 
@@ -45,5 +46,7 @@ export class DiaryService {
 
       this.http.delete(URL+'/diary/'+id).subscribe(x=>{})
   }
+
+
 
 }

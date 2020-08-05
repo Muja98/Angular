@@ -22,7 +22,7 @@ export class DiarydetailComponent implements OnInit {
   ngOnInit(): void {
     this.aroute.paramMap.subscribe(params=>{
 
-    if(params.get('idDiary')===null){return}
+    if(params.get('idDiary')===null){this.router.navigate(['/dashboard/diary'])}
     this.editFlag = true;
      this.service.getDiaryByIdDiary(parseInt(params.get('idDiary'))).subscribe(
        (x:any)=>{

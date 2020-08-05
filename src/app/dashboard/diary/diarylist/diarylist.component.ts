@@ -81,10 +81,7 @@ export class DiarylistComponent implements OnInit {
           this.to = this.from + this.itemsPerPage;
         }
     }
-   
-
-    
-}
+  }
 
   handleDelete(id)
   {

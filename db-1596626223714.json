@@ -59,15 +59,15 @@
       "id": 1
     },
     {
-      "Description": "Neki opis",
-      "EveryDayFlag": false,
+      "Description": "",
+      "EveryDayFlag": true,
       "SpecificTimesFlag": false,
-      "SpecificDaysInWeekFlag": true,
+      "SpecificDaysInWeekFlag": false,
       "SpecificDaysInMonthFlag": false,
       "Date": "2020-08-08",
-      "Title": "Sleep 8h",
+      "Title": "sad",
       "userId": "3",
-      "Day": "1110000",
+      "Day": "2",
       "id": 2
     },
     {
@@ -149,30 +149,6 @@
       "Comment": "pera",
       "Date": "2020-08-04",
       "HabbitId": 1
-    },
-    {
-      "Comment": "Desi lepi",
-      "Date": "2020-8-5",
-      "HabbitId": 1,
-      "id": 2
-    },
-    {
-      "Comment": "asd",
-      "Date": "2020-8-5",
-      "HabbitId": 1,
-      "id": 3
-    },
-    {
-      "Comment": "cao cao burazerce",
-      "Date": "2020-8-5",
-      "HabbitId": 1,
-      "id": 4
-    },
-    {
-      "Comment": "Kako nema Komentar?",
-      "Date": "2020-8-5",
-      "HabbitId": 2,
-      "id": 5
     }
   ]
 }

@@ -15,15 +15,16 @@
     <div style="color: #3AAFA9; font-size: 30px; font-weight: 700;" class="row justify-content-between mt-5 pl-5 pr-5">
         <div class="col-xl-6 col-xs-12">
             <div >Description:</div>
-            <textarea type="text" class="form-control col-10" style="height: 200px;  font-size: 20px; font-weight: 600; resize: none;" placeholder="e.g. I want to do this because..."></textarea>
+            <textarea [(ngModel)]="description" type="text" class="form-control col-10" style="height: 200px;  font-size: 20px; font-weight: 600; resize: none;" placeholder="e.g. I want to do this because..."></textarea>
         </div>
         <div style="min-height: 300px;" class="col-xl-6 col-xs-12">
             <div  >Days to do:</div>
             <select (change)="setValue($event.target.value)" class="custom-select col-10" id="inputGroupSelect01" style="height: 40px;  font-size: 20px; font-weight: 600;">
-                <option value=1 selected>Every day</option>
-                <option value=2>Specific times in week</option>
-                <option value=3>Specific days in week</option>
-                <option value=4>Specific days in month</option>
+                
+                <option value=1 [selected]="sel.prvi">Every day</option>
+                <option value=2 [selected]="sel.drugi">Specific times in week</option>
+                <option value=3 [selected]="sel.treci">Specific days in week</option>
+                <option value=4 [selected]="sel.cetvrti">Specific days in month</option>
             </select>
             <div class="row d-flex justify-content-center">
                 <div *ngIf="value==1" class="mt-5 mr-5" style="color: #3AAFA9; font-size: 24px; font-weight: 600;">
@@ -57,7 +58,7 @@
    
     <div class="container col-7 mt-5">
         <div class="row   d-flex justify-content-center ">
-            <button style="height: 40px; background-color: #3AAFA9;" (click)="HandleAddNewHabbit()" class="btn btn-success">Add new Habbit</button>
+            <button style="height: 40px; background-color: #3AAFA9;" (click)="HandleAddNewHabbit()" class="btn btn-success">{{editFlag?"Save changes":"Add new habbit"}}</button>
             <button style="height: 40px;"routerLink="/dashboard/habbit"  class="btn btn-secondary ml-3">Cancel</button>
         </div>
     </div>

@@ -1,5 +1,7 @@
+import { AuthenticationService } from './../../../service/authentication.service';
+import { HabbitService } from './../../../service/habbit.service';
 import { Component, OnInit } from '@angular/core';
-
+import {Router, ActivatedRoute} from '@angular/router'
 @Component({
   selector: 'app-habbiteditor',
   templateUrl: './habbiteditor.component.html',
@@ -7,12 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HabbiteditorComponent implements OnInit {
 
+id: string = ""
 title:string = "";
 date:string = "";
 description:string ="";
 value:number = 1;
 validationFlag:boolean = false;
-specificTimeInWeek:number = 1
+specificTimeInWeek:number = 1;
+editFlag = false;
+
+sel={
+  prvi:true,
+  drugi:false,
+  treci:false,
+  cetvrti:false
+}
+
 error = {
   title : "",
   date : "",
@@ -21,12 +33,50 @@ error = {
   days3:""
 }
 
-  constructor() { 
+  constructor(private service:HabbitService,private aservice:AuthenticationService, private router:Router , private aroute:ActivatedRoute) { 
       for(let i=1; i<=31; i++)
       {
         this.monhtns.push({index:i,checked:false})
       }
   }
+
+  ngOnInit(): void {
+    this.aroute.paramMap.subscribe(params=>{
+
+    if(params.get('idHabbit')===null){return}
+    this.editFlag = true;
+     this.service.getHabbitByHabbitId(parseInt(params.get('idHabbit'))).subscribe(
+       (x:any)=>{
+         this.id = x.id
+         this.title = x.Title
+         this.date = x.Date
+         this.description = x.Description;
+        if(x.EveryDayFlag){this.value = 1;}else{this.sel.prvi=false}
+        if(x.SpecificTimesFlag){this.value = 2;this.sel.drugi=true}
+        if(x.SpecificDaysInWeekFlag){this.value = 3;this.sel.treci=true}
+        if(x.SpecificDaysInMonthFlag){this.value = 4;this.sel.cetvrti=true}
+        if(this.value==2){this.specificTimeInWeek = parseInt(x.Day)}
+        if(this.value==3){
+          this.weekDays.forEach((item,i)=>{
+            if(x.Day.charAt(i)==='1')
+            {
+              item.checked=true;
+            }
+           })
+        }
+        if(this.value==4)
+        {
+          this.monhtns.forEach((item,i)=>{
+            if(x.Day.charAt(i)==='1'){
+              item.checked =true
+            }
+          })
+        }
+       }
+     )
+    })
+  }
+
 
   check(item:any)
   {
@@ -74,8 +124,9 @@ error = {
     this.error.days3 = "";
     this.value = value;
   }
-  ngOnInit(): void {
-  }
+
+  
+
 
   HandleAddNewHabbit()
   {
@@ -88,5 +139,67 @@ error = {
     if(this.title===""||this.date===""||this.specificTimeInWeek===null){this.validationFlag=true}else{this.validationFlag=false}
    
     if(this.validationFlag===true){return;}
+    else{
+      alert(this.description)
+      let habbit = {
+        Description: this.description,
+        EveryDayFlag: false,
+        SpecificTimesFlag: false,
+        SpecificDaysInWeekFlag: false,
+        SpecificDaysInMonthFlag: false,
+        Date: this.date,
+        Title: this.title,
+        userId: this.aservice.getUser().sub,
+        Day: "",
+        }
+        if(this.value==1)
+        {
+          habbit.Day = ""
+          habbit.EveryDayFlag= true;
+        }
+        else if(this.value==2)
+        {
+          habbit.Day = this.specificTimeInWeek.toString();
+          habbit.SpecificTimesFlag= true;
+        }
+        else if(this.value==3)
+        {
+          this.weekDays.forEach(element => {
+              if(element.checked==true)
+              {
+                habbit.Day+="1"
+              }
+              else{
+                habbit.Day +="0"
+              }
+          });
+          habbit.SpecificDaysInWeekFlag = true;
+        }
+        else if(this.value==4)
+        {
+          this.monhtns.forEach(el=>{
+            if(el.checked===true)
+            {
+                habbit.Day+="1"
+            }
+            else
+            {
+              habbit.Day+="0"
+            }
+          })
+          habbit.SpecificDaysInMonthFlag = true;
+        }
+
+        if(this.editFlag)
+        {
+          this.service.editHabbit(this.id,habbit)
+        }
+        else
+        {
+          this.service.AddnewHabbit(habbit)
+        }
+        
+        this.router.navigate(['/dashboard/habbit'])
+    }
   }
 }
