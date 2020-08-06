@@ -32,7 +32,7 @@ export class DiaryService {
   AddnewDiary(newDiary)
   { 
       
-      this.http.post(URL+'/diary', newDiary).subscribe( response=>{} )
+      this.http.post(URL+'/diary', newDiary).subscribe( response=>{console.log(response)} )
   }
 
 
@@ -46,6 +46,8 @@ export class DiaryService {
 
       this.http.delete(URL+'/diary/'+id).subscribe(x=>{})
   }
+
+  
 
 
 

@@ -47,4 +47,27 @@ export class HabbitService {
     return this.http.get(URL+'/habbit?Date='+date)
   }
 
+  updateWeekInHabbit(id,week,date)
+  {
+    if(date==="")
+    {
+      this.http.patch(URL+'/habbit/'+id,{Week: week}).subscribe(x=>{console.log(x)})
+    }
+    else
+    {
+      this.http.patch(URL+'/habbit/'+id,{Week: week, WeekDay: date}).subscribe(x=>{console.log(x)})
+    }
+  }
+
+  deleteHabbit(id)
+  {
+
+      this.http.delete(URL+'/habbit/'+id).subscribe(x=>{})
+  }
+
+  getAllHabbit()
+  {
+    return this.http.get(URL+'/habbit')
+  }
+   
 }

@@ -12,7 +12,7 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h2>1</h2>
+                                <h2>{{handleOverallEstimate()}}%</h2>
                                 <span style="font-size: 20px; color: gray;">Overall Estimate</span>
                             </span>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h2>3</h2>
+                                <h2>{{handleGlobalEstimate()}}%</h2>
                                 <span style="font-size: 20px; color: gray;">Global Estimate</span>
                             </span>
                         </div>
@@ -62,7 +62,6 @@
         </div>
     </div>
 </div>
-
 
 <div  class="row rounded d-flex flex-wrap justify-content-between mt-5">
     <div style="min-width: 290px;" class=" col-xl-4 mt-1  col-xs-12">
@@ -99,7 +98,7 @@
               <th scope="col">Title</th>
               <th scope="col">Date</th>
               <th scope="col">Frequency</th>
-              <th scope="col">WeekDay done</th>
+              <th scope="col">Last 7 days</th>
               <th>Estimate</th>
               <th scope="col">Actions</th>
             </tr>
@@ -114,33 +113,33 @@
               <td *ngIf="i>=from && i<to">
                 <div class="row d-flex pl-5 ml-5">
                
-                    <div *ngFor="let it of weekDays; index as i" >
-        
-                        <div [satPopoverAnchor]="p" (click)="p.toggle()" *ngIf="it.color==0" style="background-color: #E8E8E8; width: 40px; height: 40px; color: black; padding-top: 6px; padding-left: 1px;" class="rounded-circle m-1 text-center "placement="bottom">{{it.title}}</div>
-                        <div [satPopoverAnchor]="p" (click)="p.toggle()" *ngIf="it.color==1" style="background-color: #3CB371; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px;" class="rounded-circle m-1 text-center">{{it.title}}</div>
-                        <div [satPopoverAnchor]="p" (click)="p.toggle()" *ngIf="it.color==2" style="background-color: #DC143C; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px;" class="rounded-circle m-1 text-center">{{it.title}}</div>
-                        <div [satPopoverAnchor]="p" (click)="p.toggle()" *ngIf="it.color==3" style="background-color:    gray; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px;" class="rounded-circle m-1 text-center">{{it.title}}</div>
+                    <div *ngFor="let it of numbers; index as i" >
+                        <span ></span>
+                        <div [satPopoverAnchor]="p" (click)="p.toggle()" *ngIf="item.Week.charAt(i)==='0'" style="background-color: #E8E8E8; width: 40px; height: 40px; color: black; padding-top: 6px; padding-left: 1px;" class="rounded-circle m-1 text-center "placement="bottom">{{weekDays[i]}}</div>
+                        <div [satPopoverAnchor]="p" (click)="p.toggle()" *ngIf="item.Week.charAt(i)==='1'" style="background-color: #3CB371; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px;" class="rounded-circle m-1 text-center">{{weekDays[i]}}</div>
+                        <div [satPopoverAnchor]="p" (click)="p.toggle()" *ngIf="item.Week.charAt(i)==='2'" style="background-color: #DC143C; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px;" class="rounded-circle m-1 text-center">{{weekDays[i]}}</div>
+                        <div [satPopoverAnchor]="p" (click)="p.toggle()" *ngIf="item.Week.charAt(i)==='3'" style="background-color:    gray; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px;" class="rounded-circle m-1 text-center">{{weekDays[i]}}</div>
 
 
                         <sat-popover #p verticalAlign="below">
                         <div style="background-color: #ffffff;" class="popover-wrapper rounded p-4 border">
                             <div class="d-flex" >
-                                <div (click)="editWeekDay(i,0) "style="background-color: #E8E8E8; width: 40px; height: 40px; color: black; padding-top: 6px; padding-left: 1px; cursor: pointer;" class="rounded-circle m-1 text-center "placement="bottom">{{it.title}}</div>
-                                <div (click)="editWeekDay(i,1) "style="background-color: #3CB371; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px; cursor: pointer;" class="rounded-circle m-1 text-center">{{it.title}}</div>
-                                <div (click)="editWeekDay(i,2) "style="background-color: #DC143C; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px; cursor: pointer;" class="rounded-circle m-1 text-center">{{it.title}}</div>
-                                <div (click)="editWeekDay(i,3) "style="background-color:    gray; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px; cursor: pointer;" class="rounded-circle m-1 text-center">{{it.title}}</div>
+                                <div (click)="editWeekDay(i,0,item) "style="background-color: #E8E8E8; width: 40px; height: 40px; color: black; padding-top: 6px; padding-left: 1px; cursor: pointer;" class="rounded-circle m-1 text-center "placement="bottom">{{weekDays[i]}}</div>
+                                <div (click)="editWeekDay(i,1,item) "style="background-color: #3CB371; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px; cursor: pointer;" class="rounded-circle m-1 text-center">{{weekDays[i]}}</div>
+                                <div (click)="editWeekDay(i,2,item) "style="background-color: #DC143C; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px; cursor: pointer;" class="rounded-circle m-1 text-center">{{weekDays[i]}}</div>
+                                <div (click)="editWeekDay(i,3,item) "style="background-color:    gray; width: 40px; height: 40px; color: white; padding-top: 6px; padding-left: 1px; cursor: pointer;" class="rounded-circle m-1 text-center">{{weekDays[i]}}</div>
                             </div>
                         </div>
                         </sat-popover>
                     </div>
                 </div>
               </td>
-              <td *ngIf="i>=from && i<to">70%</td>
+              <td *ngIf="i>=from && i<to">{{handleEstimate(item)}}%</td>
               <td *ngIf="i>=from && i<to"  >
                 <span [routerLink]="['/dashboard/habbit',item.id]" style="font-size: 28px; color: orange; cursor: pointer;"  class="mr-4">
                     <i class="fa fa-edit"></i>
                 </span>
-                <span style="font-size: 28px; color: red; cursor: pointer;">
+                <span (click)="handleDelete(item.id)" style="font-size: 28px; color: red; cursor: pointer;">
                     <i class="fa fa-times-circle"></i>
                 </span>
               </td>

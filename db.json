@@ -43,6 +43,13 @@
       "Text": "SDasd",
       "userId": "3",
       "id": 3
+    },
+    {
+      "Date": "2020-08-05",
+      "Title": "Neki",
+      "Text": "asd",
+      "userId": "3",
+      "id": 4
     }
   ],
   "habbit": [
@@ -56,6 +63,8 @@
       "Title": "Ponedeljak i Utorak",
       "userId": "3",
       "Day": "1100000",
+      "Week": "3123001",
+      "WeekDay": "08/06/2020",
       "id": 1
     },
     {
@@ -68,6 +77,8 @@
       "Title": "Sleep 8h",
       "userId": "3",
       "Day": "1110000",
+      "Week": "1112111",
+      "WeekDay": "08/06/2020",
       "id": 2
     },
     {
@@ -79,6 +90,8 @@
       "Date": "2020-08-28",
       "Title": "Mesec",
       "userId": "3",
+      "Week": "0312210",
+      "WeekDay": "08/06/2020",
       "Day": "1111111000000000000000000000000",
       "id": 3
     },
@@ -91,6 +104,8 @@
       "Date": "2020-08-31",
       "Title": "asd",
       "userId": "3",
+      "Week": "0000000",
+      "WeekDay": "08/06/2020",
       "Day": "0111010000000000000000000000000",
       "id": 4
     },
@@ -103,6 +118,8 @@
       "Date": "2020-08-13",
       "Title": "asd",
       "userId": "3",
+      "Week": "0000000",
+      "WeekDay": "08/06/2020",
       "Day": "1110000",
       "id": 5
     },
@@ -115,32 +132,10 @@
       "Date": "2020-08-07",
       "Title": "asdasd",
       "userId": "3",
+      "Week": "1111111",
+      "WeekDay": "08/06/2020",
       "Day": "1000000000000000000000000000001",
       "id": 6
-    },
-    {
-      "Description": "",
-      "EveryDayFlag": false,
-      "SpecificTimesFlag": true,
-      "SpecificDaysInWeekFlag": false,
-      "SpecificDaysInMonthFlag": false,
-      "Date": "2020-08-14",
-      "Title": "sadsd",
-      "userId": "3",
-      "Day": "4",
-      "id": 7
-    },
-    {
-      "Description": "",
-      "EveryDayFlag": false,
-      "SpecificTimesFlag": false,
-      "SpecificDaysInWeekFlag": true,
-      "SpecificDaysInMonthFlag": false,
-      "Date": "2020-08-20",
-      "Title": "asd",
-      "userId": "3",
-      "Day": "1000000",
-      "id": 8
     }
   ],
   "note": [

@@ -13,42 +13,171 @@ export class HabbitlistComponent implements OnInit {
   dateSearch:string = "";
   niz:any = []
   pomniz:any=[]
+  all:any=[]
   itemsPerPage:number = 5;
   itemsCount:number = 0;
   page:number = 1;
   from = 0;
   to = this.itemsPerPage;
+  numbers:any
   constructor(private service:HabbitService, private aserice:AuthenticationService) {
+    this.numbers = Array(7).fill(0).map((x,i)=>i);
 
+    var d = new Date();
+    var n = d.getDay();
+    var pom = [];
+
+    for(let i=n; i<7; i++)
+    {
+      pom.push(this.weekDays[i]);
+    }
+    console.log(n)
+    for(let i=0; i<n; i++)
+    {
+      pom.push(this.weekDays[i]);
+    }
+    this.weekDays=[];
+    this.weekDays = pom;
    }
 
    ngOnInit(): void {
    
 
     this.getAll()
+    this.handleGetAll();
   }
 
-  weekDays = [{title:'Mo',color:1},
-              {title:'Tu',color:2},
-              {title:'We',color:0},
-              {title:'Th',color:2},
-              {title:'Fr',color:3},
-              {title:'Sa',color:2},
-              {title:'Su',color:1}];
-  
-  editWeekDay(i,n)
+  weekDays = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+
+  handleGetAll()
   {
-    this.weekDays[i].color=n;
+    this.service.getAllHabbit().subscribe(
+        res=>{this.all=res}
+    )
+  }
+
+  handleOverallEstimate()
+  {
+    let br = 0;
+    this.pomniz.forEach(element => {
+      for(let i=0; i<7; i++)
+      {
+        if(element.Week.charAt(i)==='1')
+        {
+          br++;
+        }
+      }
+    });
+    let all = this.pomniz.length * 7;
+
+    return  Math.round((br/all)*100);
+  }
+
+  handleGlobalEstimate()
+  {
+    let br =0;
+    let alla =0;
+ 
+          this.all.forEach(element => {
+              for(let i=0; i<7; i++)
+              {
+                if(element.Week.charAt(i)==='1')
+                {
+                  br++;
+                }
+              }
+              alla = this.all.length * 7;
+          });
+
+    return  Math.round((br/alla)*100);
+  }
+
+  handleDelete(id)
+  {
+    this.service.deleteHabbit(id);
+    window.location.reload();
+  }
+  
+  editWeekDay(j,n,item)
+  {
+    let pom = ""
+    for(let i=0; i<7; i++)
+    {
+      if(i==j)
+      {
+        pom = pom.concat(n);
+      }
+      else
+      {
+        pom = pom.concat(item.Week.charAt(i))
+      }
+    }
+    item.Week = pom;
+    this.service.updateWeekInHabbit(item.id,item.Week,"")
   } 
+
+  DayDifference(date)
+  {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    let pom = mm + '/' + dd + '/' + yyyy;
+    
+    var date1 = new Date(date);
+    var date2 = new Date(pom);
+    var Difference_In_Time = date2.getTime() - date1.getTime(); 
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+    return Difference_In_Days
+  }
 
 
   getAll()
   {
     this.service.getAllHabbitByUserId(this.aserice.getUser().sub).subscribe(
       response =>{this.niz = response
+                  this.niz.forEach(element => {
+                      let pom = this.DayDifference(element.WeekDay);
+                  
+                      if(pom>0)
+                      {
+                        for(let j=0; j<pom; j++)
+                        {
+                            let after = ""
+                            for(let i=1; i<7; i++)
+                            {
+                              after = after.concat(element.Week.charAt(i))
+                            }
+                            after = after.concat('0');
+                            element.Week = after
+
+                            var today = new Date();
+                            var dd = String(today.getDate()).padStart(2, '0');
+                            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                            var yyyy = today.getFullYear();
+                            let pom = mm + '/' + dd + '/' + yyyy;
+
+                            this.service.updateWeekInHabbit(element.id,element.Week,pom);
+                        }
+                       
+                      }
+                  });
                   this.pomniz = response
                   this.itemsCount = this.niz.length}
   )
+  }
+
+  shift()
+  {
+    this.niz.forEach((el:any) => {
+        let after = ""
+        for(let i=1; i<7; i++)
+        {
+          after = after.concat(el.Week.charAt(i))
+        }
+        after = after.concat('0');
+        el.Week = after
+    });
   }
  
   setValue(value)
@@ -81,6 +210,19 @@ export class HabbitlistComponent implements OnInit {
     this.itemsCount = this.niz.length
    
   
+  }
+
+  handleEstimate(item)
+  {
+    let br = 0;
+    for(let i=0; i<7; i++)
+    {
+      if(item.Week.charAt(i)==='1')
+      {
+        br++;
+      }
+    }
+    return Math.round((br/7)*100)
   }
 
   handlePageNumber=(pageNumber)=>{
@@ -165,38 +307,4 @@ export class HabbitlistComponent implements OnInit {
 }
 
 
- // title:"Get up in 5AM",
-  //   date:"10/2/2020",
-  //   dayFlag:true,
-  //   weekFlag:false,
-  //   specificDayInWeek:false,
-  //   montly:false,
-  //   day:""
-  //   },
-  //   {
-  //     title:"Meditation",
-  //     date:"10/2/2020",
-  //     dayFlag:false,
-  //     weekFlag:true,
-  //     specificDayInWeek:false,
-  //     montly:false,
-  //     day:4
-  //   },
-  //   {
-  //     title:"Cold Shower",
-  //     date:"10/2/2020",
-  //     dayFlag:false,
-  //     weekFlag:false,
-  //     specificDayInWeek:true,
-  //     montly:false,
-  //     day:1010101
-  //   },
-  //   {
-  //     title:"Read",
-  //     date:"10/2/2020",
-  //     dayFlag:false,
-  //     weekFlag:false,
-  //     specificDayInWeek:false,
-  //     montly:true,
-  //     day: '0001110110001111010010010000000'
-  //   },
+ 
