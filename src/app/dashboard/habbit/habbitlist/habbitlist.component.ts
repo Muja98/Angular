@@ -58,6 +58,7 @@ export class HabbitlistComponent implements OnInit {
 
   handleOverallEstimate()
   {
+    if(this.pomniz.length==0){return 0}
     let br = 0;
     this.pomniz.forEach(element => {
       for(let i=0; i<7; i++)
@@ -75,6 +76,7 @@ export class HabbitlistComponent implements OnInit {
 
   handleGlobalEstimate()
   {
+    if(this.all.length==0){return 0}
     let br =0;
     let alla =0;
  

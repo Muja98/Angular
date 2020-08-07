@@ -1,6 +1,6 @@
-import { TododetailComponent } from './../tododetail/tododetail.component';
+import { TodoService } from './../../../service/todo.service';
 import { Component, OnInit } from '@angular/core';
-import { SimpleModalService } from "ngx-simple-modal";
+import { AuthenticationService } from 'src/app/service/authentication.service';
 
 @Component({
   selector: 'app-todolist',
@@ -9,85 +9,185 @@ import { SimpleModalService } from "ngx-simple-modal";
 })
 export class TodolistComponent implements OnInit {
 
-  constructor(private simpleModalService:SimpleModalService) { }
+  constructor(private aservice:AuthenticationService, private service: TodoService) { }
   
-  showConfirm(item) {
-  
-    let disposable = this.simpleModalService.addModal(TododetailComponent, {
-          items:item
-        })
-        .subscribe((isConfirmed)=>{
-            if(isConfirmed) {
-               
-            }
-            else {
-              
-            }
+  ngOnInit(): void {
+    this.getAll();
+
+  }
+
+  numberOfTodos:number = 0;
+  nubmerOfTodoItems:number = 0;
+  numberOfFinishedItems:number=0;
+  searchDate:string = "";
+  itemsPerPage:number = 5;
+  itemsCount:number = 0;
+  page:number = 1;
+  from = 0;
+  to = this.itemsPerPage;
+  pomniz = [];
+  todoHabbit = [];
+  todoItem = [];
+  getAll()
+  {
+    this.service.getTodoById(this.aservice.getUser().sub).subscribe(
+      (res:any)=>{
+        this.niz = res;
+        this.pomniz = this.niz;
+        this.itemsCount = this.niz.length
+
+        res.forEach(element => {
+            this.service.getTodoItemsByTodoId(element.id).subscribe((el:any)=>{
+                el.forEach(item => {
+                    this.todoItem.push(item)
+                });
+            })
         });
-    //We can close modal calling disposable.unsubscribe();
-    //If modal was not closed manually close it by timeout
+
+        this.niz.forEach((el)=>{
+            this.service.getHabbitFromTodoHabbit(el.id).subscribe((el:any)=>{
+                el.forEach(element => {
+                    this.todoHabbit.push(element)
+                });
+            })
+            this.numberOfTodos++;
+            this.nubmerOfTodoItems+=el.Items;
+            this.numberOfFinishedItems +=el.Done;
+        })
+      }
+    )
+
+  
+  }
+
+  setValue(value)
+  {
+    console.log(this.todoItem)
+    parseInt(value)
+    if(value===0)
+    {
+      this.niz =[];
+      this.niz = this.pomniz;
+      return;
+    }
+
+    if(value==2)
+    {
+      this.niz.sort((a,b)=>Date.parse(b.Date) -Date.parse(a.Date))
+      return
+    }
+    else if(value==1)
+    {
+      this.niz.sort((a,b)=>Date.parse(a.Date)-Date.parse(b.Date))
+      return;
+    }
+    let br= 0;
+   
+
+    if(value == 5 || value==6){br=5}
+    if(value == 3 || value==4){br=3}
+
+    if(value ==1 || value ==3 || value ==5)
+    {
+        for(let i=0; i<this.niz.length-1;i++)
+       {
+        for(let j=0; j<this.niz.length-1-i; j++)
+        {
+          if(Object.values(this.niz[j])[br]>Object.values(this.niz[j+1])[br])
+          {
+            var pom = this.niz[j];
+            this.niz[j] = this.niz[j+1];
+            this.niz[j+1] = pom;
+          }
+        }
+      }
+    }
+    else
+    {
+       //opadajuce 2,4,6
+      for(let i=0; i<this.niz.length-1;i++)
+      {
+        for(let j=0; j<this.niz.length-1-i; j++)
+        {
+          if(Object.values(this.niz[j])[br]<Object.values(this.niz[j+1])[br])
+          {
+            var pom = this.niz[j];
+            this.niz[j] = this.niz[j+1];
+            this.niz[j+1] = pom;
+          }
+        }
+      }
+    }
+  }
+
+  handleDelete(id)
+  {
+    var nizTodo = this.todoItem.filter((x:any)=>x.todoId==id)
+    var nizHabbit = this.todoHabbit.filter((x:any)=>x.todoId==id)
     
-}
+    nizTodo.forEach((el:any)=>{
+      this.service.deleteTodoItem(el.id);
+    })
+    nizHabbit.forEach((el:any)=>{
+      this.service.deleteTodoHabbit(el.id);
+    })
+
+    this.service.deleteTodo(id);
+    window.location.reload();
+  }
+
+  handleSearch()
+  {
+    if(this.searchDate=="")
+    {
+      this.niz=[]
+      this.getAll();
+      return;
+    }
+    this.service.searchByDate(this.searchDate).subscribe(
+      (res:any)=>{
+        this.niz=[]
+        this.niz = res;
+      }
+    )
+  }
+
+  handlePageNumber=(pageNumber)=>{
+    
+    if(!pageNumber || pageNumber===undefined || pageNumber === null) {
+        this.from = 0;
+        this.to = this.itemsPerPage;
+    } else {
+        if(pageNumber === Math.floor(this.itemsCount / this.itemsPerPage) + 1) {
+          this.from = (pageNumber-1)*this.itemsPerPage;
+          this.to = this.from+(this.itemsCount-this.from);
+           
+
+        } else {
+          this.from = (pageNumber - 1) * this.itemsPerPage;
+          this.to = this.from + this.itemsPerPage;
+        }
+    }
+  }
+ 
+
+  izracunaj(item,i)
+  {
+    if(item.Items==0){return 0}
+    item.Estimate = Math.floor((item.Done/item.Items)*100)
+    this.pomniz[i].Estimate = Math.floor((item.Done/item.Items)*100)
+    return Math.floor((item.Done/item.Items)*100)
+  }
+
 
   updateElement: any;
-  niz = [
-    {
-      'id': 1,
-          'title': 'WeekTodo',
-          'comment': "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when ",
-          'date': '10/5/2020',
-          'estimate': 34,
-          'userId': 1,
-    },
-    {
-      'id': 2,
-          'title': 'MonthDodo',
-          'comment': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque efficitur, tortor et fermentum molestie, eros massa congue lacus, vel malesuada tellus lacus eu quam. Pellentesque enim velit, dictum a vestibulum eu, dapibus at leo. Ut vitae mauris lobortis, porttitor augue non, suscipit leo. Ut at pulvinar lorem. Donec nibh dolor, ultricies sit amet sagittis eget, viverra vitae libero. Aenean malesuada efficitur ex vitae tristique. Suspendisse volutpat eu risus in tincidu",
-          'date': '10/5/2020',
-          'estimate': 54,
-          'userId': 1,
-    },
-    {
-      'id': 3,
-          'title': 'Vukanja todo\'s',
-          'comment': "neki",
-          'date': '10/5/2020',
-          'estimate': 23,
-          'userId': 1,
-    },
-    {
-      'id': 4,
-          'title': 'Kursumlija todo\'s',
-          'comment': "neki",
-          'date': '10/5/2020',
-          'estimate': 87,
-          'userId': 1,
-    },
-    {
-      'id': 4,
-          'title': 'Kursumlija todo\'s',
-          'comment': "neki",
-          'date': '10/5/2020',
-          'estimate': 87,
-          'userId': 1,
-    },
-    {
-      'id': 4,
-          'title': 'Kursumlija todo\'s',
-          'comment': "neki",
-          'date': '10/5/2020',
-          'estimate': 87,
-          'userId': 1,
-    },
-
-  ];
+  niz = [];
   
 
   
 
-  ngOnInit(): void {
     
      
-  }
+
 
 }

@@ -37,9 +37,9 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
       children:[
         {path:'user',component:UserComponent},
         {path:'todo',component:TodoComponent},
-        {path:'todo/detail',component:TododetailComponent},
+        {path:'todo/detail/:idTodo',component:TododetailComponent},
         {path:'newtodo',component:TodoeditorComponent},
-        {path:'todo/:idUser',component:TodoeditorComponent},
+        {path:'todo/:idTodo',component:TodoeditorComponent},
         {path:'newhabbit',component:HabbiteditorComponent},
         {path:'habbit/detail/:idHabbit',component:HabbitdetailComponent},
         {path:'habbit',component:HabbitComponent},

@@ -1,8 +1,8 @@
-import { Router } from '@angular/router';
-import { Component} from '@angular/core';
-import { SimpleModalComponent } from "ngx-simple-modal";
-import { not } from '@angular/compiler/src/output/output_ast';
-
+import { Router,ActivatedRoute } from '@angular/router';
+import { TodoService } from './../../../service/todo.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './../../../service/authentication.service';
+import { HabbitService } from './../../../service/habbit.service';
 export interface ConfirmModel {
   items:any
 }
@@ -11,18 +11,55 @@ export interface ConfirmModel {
   templateUrl: './tododetail.component.html',
   styleUrls: ['./tododetail.component.css']
 })
-export class TododetailComponent extends SimpleModalComponent<ConfirmModel, boolean> implements ConfirmModel {
+export class TododetailComponent implements OnInit {
 
+  title:string  ="";
+  date:string = "";
+  tasks:string = "";
   pom: boolean  =false;
   note: string = "";
   pomNote:string = "";
   activateFlag:boolean = false;
+  todoID:string;
+  done:number = 0;
+  constructor(private service:HabbitService,private aservice:AuthenticationService,private mService:TodoService, private router:Router , private aroute:ActivatedRoute) { }
+  ngOnInit(): void {
+    this.aroute.paramMap.subscribe(params=>{
+      if(params.get('idTodo')!=='newtodo')
+      {
+        this.todoID = params.get('idTodo');
+        this.mService.getTodoByTodoId(this.todoID).subscribe((item:any)=>{
+          this.title = item.Title;
+          this.date = item.Date;
+          this.tasks  = item.Items
+          this.note = item.Note;
+        })
 
-  constructor(private router: Router) {
-    super();
-    
+        this.mService.getTodoItemsByTodoId(this.todoID).subscribe((item:any)=>{
+          this.taskNiz = item;
+
+          this.taskNiz.forEach((el:any)=>{
+            if(el.Status){this.done++}
+          })
+        })
+
+       
+
+        this.mService.getHabbitFromTodoHabbit(params.get('idTodo')).subscribe((el:any)=>{
+          el.forEach((element:any) => {
+              this.mService.getHabbitByTodo(element.habbitId).subscribe((ele:any)=>{
+              let checked = false
+              if(ele.Week.charAt(6)==='1'){checked=true;this.done++}
+              else{checked=false}
+              this.habbitNiz.push({item:ele,checked:checked});
+          })
+         });
+         })
+
+      }})
   }
 
+  
   HandleChangeNote()
   {
     this.pomNote = this.note;
@@ -31,33 +68,23 @@ export class TododetailComponent extends SimpleModalComponent<ConfirmModel, bool
 
   handleSaveClick()
   {
-    this.pomNote = this.note;
-    this.activateFlag = false;
+
+    this.taskNiz.forEach((el:any)=>{
+      this.mService.updateTodoItemStatus(el.id,{Status:el.Status})
+    })
+
+    this.habbitNiz.forEach((el:any)=>{
+      this.mService.updateHabbitStatus(el.item.id,{Week:el.item.Week})
+    })
+
+    this.mService.updateNote(this.todoID, {Note: this.note, Done:this.done})
+    this.Exit();
   }
 
-  handleAbortClick()
-  {
-   
-    this.note = this.pomNote;
-    this.activateFlag = false;
-  }
-
-  niz = [{title:"Get up in 5am in the morning",checked:false},
-         {title:"Run for 30 minutes",checked:false},
-         {title:"Cold Shower",checked:false},
-         {title:"Meditate for 15 minutes, meditaion for school",checked:false},
-         {title:"Study 4h",checked:false},
-         {title:"Sleep 1h",checked:false},
-         {title:"Study 4h",checked:false},
-         {title:"Workout",checked:false},
-         {title:"Sleep at 21h",checked:false},
-        ]
+ 
+  taskNiz = []
+  habbitNiz = []
   items: any;
-  confirm() {
-   
-    this.result = true;
-    this.close();
-  }
 
   Exit()
   {
@@ -66,11 +93,42 @@ export class TododetailComponent extends SimpleModalComponent<ConfirmModel, bool
 
   click(item)
   {
-    console.log(item)
-    item.checked = !item.checked
-    // this.pom = !this.pom
-    // console.log(index)
+    item.Status = !item.Status
+    if(item.Status)
+    {
+      this.done++;
+    }
+    else
+    {
+      this.done--;
+    }
   }
+
+  clickHabbit(item)
+  {
+      let pom ="";
+      for(let i=0; i<6; i++)
+      {
+        pom = pom.concat(item.item.Week.charAt(i))
+      }
+
+      if(item.item.Week.charAt(6)=='1')
+      {
+        pom = pom.concat('0')
+        this.done--;
+      }
+      else
+      {
+        pom = pom.concat('1')
+        this.done++;
+      }
+      item.item.Week = pom;
+  }
+
+
+
+
+
 
  
 

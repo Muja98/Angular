@@ -17,7 +17,8 @@ value:number = 1;
 validationFlag:boolean = false;
 specificTimeInWeek:number = 1;
 editFlag = false;
-
+Week:string= ""
+WeekDay: string=""
 sel={
   prvi:true,
   drugi:false,
@@ -47,6 +48,8 @@ error = {
     this.editFlag = true;
      this.service.getHabbitByHabbitId(parseInt(params.get('idHabbit'))).subscribe(
        (x:any)=>{
+        this.Week = x.Week;
+        this.WeekDay = x.WeekDay;
          this.id = x.id
          this.title = x.Title
          this.date = x.Date
@@ -137,21 +140,29 @@ error = {
     if(this.checkDayInWeek()){this.error.days2="Please select spcecific day in week"}else{this.error.days2=""}
     if(this.checkDayInMonth()){this.error.days3="Please select spcecific day in Month"}else{this.error.days3=""}
     if(this.title===""||this.date===""||this.specificTimeInWeek===null){this.validationFlag=true}else{this.validationFlag=false}
-   
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    let pom = mm + '/' + dd + '/' + yyyy;
     if(this.validationFlag===true){return;}
     else{
-      alert(this.description)
+
       let habbit = {
         Description: this.description,
         EveryDayFlag: false,
         SpecificTimesFlag: false,
         SpecificDaysInWeekFlag: false,
         SpecificDaysInMonthFlag: false,
+        Week: "0000000",
+        WeekDay: pom,
         Date: this.date,
         Title: this.title,
         userId: this.aservice.getUser().sub,
         Day: "",
         }
+      
+        
         if(this.value==1)
         {
           habbit.Day = ""
@@ -192,6 +203,8 @@ error = {
 
         if(this.editFlag)
         {
+          habbit.Week = this.Week;
+          habbit.WeekDay = this.WeekDay
           this.service.editHabbit(this.id,habbit)
         }
         else

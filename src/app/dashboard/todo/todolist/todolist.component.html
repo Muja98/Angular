@@ -9,7 +9,7 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h2>6</h2>
+                                <h2>{{numberOfTodos}}</h2>
                                 <span style="font-size: 20px; color: gray;">Todo's</span>
                             </span>
                         </div>
@@ -28,7 +28,7 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h2>45</h2>
+                                <h2>{{nubmerOfTodoItems}}</h2>
                                 <span style="font-size: 20px; color: gray;">Todo items</span>
                             </span>
                         </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h2>30</h2>
+                                <h2>{{numberOfFinishedItems}}</h2>
                                 <span style="font-size: 20px; color: gray;">Finished</span>
                             </span>
                         </div>
@@ -66,7 +66,7 @@
                         </div>
                         <div style="width: fit-content;" class="media-body text-xs-right d-flex justify-content-end ">
                             <span >
-                                <h2>15</h2>
+                                <h2>{{nubmerOfTodoItems-numberOfFinishedItems}}</h2>
                                 <span style="font-size: 20px; color: gray;">Not finished</span>
                             </span>
                         </div>
@@ -87,20 +87,20 @@
     </div>
     <div style="min-width: 290px;" class=" col-xl-4 mt-1  col-xs-12  flex-wrap justify-content-center  d-flex ">
         
-        <input type="date" placeholder="e.g. 2020-5-10" class="form-control col-10" />
-        <button class="btn btn-success">Search</button>
+        <input [(ngModel)]="searchDate"  type="date" placeholder="e.g. 2020-5-10" class="form-control col-10" />
+        <button (click)="handleSearch()" class="btn btn-success">Search</button>
         <figcaption>Serach by date</figcaption>
     </div>
     <div  style="min-width: 290px;"class="col-xl-4 mt-1  col-xs-12  d-flex justify-content-center   ">
         
-        <select class="custom-select col-8" id="inputGroupSelect01">
-            <option selected>Order by</option>
+        <select (change)="setValue($event.target.value)"  class="custom-select col-8" id="inputGroupSelect01">
+            <option value="0" selected>Order by</option>
             <option value="1">Date Ascending</option>
             <option value="2">Date Descending</option>
             <option value="3">Estimate Ascending</option>
-            <option value="3">Estimate Descending</option>
-            <option value="3">Number of items Ascending</option>
-            <option value="3">Number of items Descending</option>
+            <option value="4">Estimate Descending</option>
+            <option value="5">Number of items Ascending</option>
+            <option value="6">Number of items Descending</option>
           </select>
     </div>
 </div>
@@ -118,18 +118,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr routerLink="detail" style="font-size: 18px; cursor: pointer;" class="text-center " *ngFor="let item of niz; index as i ">
-              <th scope="row" >{{i+1}}</th>
-              <td>{{item.title}}</td>
-              <td>{{item.date}}</td>
-              <td>{{item.estimate}}%</td>
-              <td>3</td>
-              <td>4</td>
-              <td style="width: 100px;" >
-                <span style="font-size: 28px; color: orange; cursor: pointer;"  class="mr-4">
+            <tr  style="font-size: 18px; cursor: pointer;" class="text-center " *ngFor="let item of niz; index as i ">
+              <th *ngIf="i>=from && i<to" scope="row" >{{i+1}}</th>
+              <td *ngIf="i>=from && i<to" [routerLink]="['/dashboard/todo/detail',item.id]">{{item.Title}}</td>
+              <td *ngIf="i>=from && i<to" [routerLink]="['/dashboard/todo/detail',item.id]">{{item.Date}}</td>
+              <td *ngIf="i>=from && i<to" [routerLink]="['/dashboard/todo/detail',item.id]">{{ izracunaj(item,i)  }}%</td>
+              <td *ngIf="i>=from && i<to" [routerLink]="['/dashboard/todo/detail',item.id]">{{item.Items}}</td>
+              <td *ngIf="i>=from && i<to" [routerLink]="['/dashboard/todo/detail',item.id]">{{item.Done}}</td>
+              <td *ngIf="i>=from && i<to" style="width: 100px;" >
+                <span [routerLink]="['/dashboard/todo',item.id]" style="font-size: 28px; color: orange; cursor: pointer;"  class="mr-4">
                     <i class="fa fa-edit"></i>
                 </span>
-                <span style="font-size: 28px; color: red; cursor: pointer;">
+                <span (click)="handleDelete(item.id)" style="font-size: 28px; color: red; cursor: pointer;">
                     <i class="fa fa-times-circle"></i>
                 </span>
               </td>
@@ -138,9 +138,8 @@
     </table>
   </div>
 
-<div class="container d-flex justify-content-center  mt-5">
-    <ngb-pagination [collectionSize]="70"  aria-label="Default pagination">
+  <div class="container d-flex justify-content-center  mt-5">
+    <ngb-pagination [(page)]="page" [collectionSize]="itemsCount" (pageChange)="handlePageNumber(page)"  [pageSize]="5"  aria-label="Default pagination">
        
     </ngb-pagination>
 </div>
-
