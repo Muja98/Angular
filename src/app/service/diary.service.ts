@@ -47,7 +47,10 @@ export class DiaryService {
       this.http.delete(URL+'/diary/'+id).subscribe(x=>{})
   }
 
-  
+  getLastDiary(id)
+  {
+      return this.http.get(URL+"/diary?_sort=id&_order=desc&_limit=1")
+  }
 
 
 

@@ -67,7 +67,12 @@ export class HabbitService {
 
   getAllHabbit()
   {
-    return this.http.get(URL+'/habbit')
+    
   }
    
+
+  getLastHabbit(id)
+  {
+    return this.http.get(URL+"/habbit?userId="+id+"&_sort=id&_order=desc&_limit=1")
+  }
 }

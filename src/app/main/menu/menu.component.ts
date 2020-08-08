@@ -51,8 +51,8 @@ export class MenuComponent  {
     this.service.logout();
   }
 
-  niz1 = ['Napravi svoj dnevni plan','Kreiraj svoje navike','Piši dnevnik']
-  niz2 = ['Isplaniraj dan uz pomoć ToDo liste.','Kreiraj svoj navike tako što ih pratiti svakog dana.','Piši dnvenik i podeli svoja iskustva sa ostalima.']
+  niz1 = ['Make your plan','Make new habbits','Write a diart']
+  niz2 = ['Manage your day with todo list.','Create new habbit with tracking it every day.','Write a diary and share taugts with others.']
 
    w3_open() {
      this.sideBar = true;

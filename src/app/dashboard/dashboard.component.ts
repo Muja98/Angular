@@ -8,14 +8,18 @@ import {Router} from '@angular/router'
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit{
   constructor(private service: AuthenticationService,private router:Router) { }
   user: any;
+  urlRoute:string  = ""
   ngOnInit(): void {
   
     this.service.getUserById(this.service.getUser().sub).subscribe(response =>{this.user = response})
-    
+    this.urlRoute = window.location.href
+   
   }
+  
   pomWidth
   pomwidth2
   onResized2(event: ResizedEvent)

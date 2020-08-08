@@ -1,5 +1,9 @@
+import { DiaryService } from './../../service/diary.service';
+import { TodoService } from './../../service/todo.service';
+import { HabbitService } from './../../service/habbit.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../service/authentication.service'
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -7,12 +11,46 @@ import { AuthenticationService } from '../../service/authentication.service'
 })
 export class UserComponent implements OnInit {
 
-  constructor(private service: AuthenticationService) { }
+  constructor( private router:Router ,private service: AuthenticationService, private hservice: HabbitService, private tservice:TodoService, private dservice: DiaryService) { }
   user: any;
+  Habbit:any;
+  Todo:any;
+  Diary:any;
+
   ngOnInit(): void {
-  
-    this.service.getUserById(this.service.getUser().sub).subscribe(response =>{this.user = response})
+    console.log(this.Habbit)
+    this.service.getUserById(this.service.getUser().sub).subscribe((response:any) =>{this.user = response
+      this.hservice.getLastHabbit(response.id).subscribe((el:any)=>{this.Habbit = el
+        console.log(this.Habbit)
+      })
+      this.tservice.getLastTodo(response.id).subscribe((el:any)=>{this.Todo = el
+        console.log(this.Todo)
+      })
+      this.dservice.getLastDiary(response.id).subscribe((el:any)=>{this.Diary = el
+        console.log(this.Diary)
+      })
+   
+     
+     
+    })
     
+  }
+
+  redirect(pom)
+  {
+    
+      if(pom.type==1)
+      {
+        this.router.navigate(['/dashboard/todo/detail/'+pom.id])
+      }
+      else if(pom.type==2)
+      {
+        this.router.navigate(['/dashboard/habbit/detail/'+pom.id])
+      }
+      else if(pom.type==3)
+      {
+        this.router.navigate(['/dashboard/diary/detail/'+pom.id])
+      }
   }
 
  

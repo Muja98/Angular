@@ -1,4 +1,6 @@
+import { CardComponent } from './user/card/card.component';
 import { DiaryeditorComponent } from './diary/diaryeditor/diaryeditor.component';
+
 import { DiarylistComponent } from './diary/diarylist/diarylist.component';
 import { DiarydetailComponent } from './diary/diarydetail/diarydetail.component';
 import { DiaryComponent } from './diary/diary.component';
@@ -23,7 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SatPopoverModule } from '@ncstate/sat-popover';
 @NgModule({
-  declarations: [HabbitlistComponent,DiaryeditorComponent,DiarylistComponent,DiarydetailComponent,DiaryComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent,DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent],
+  declarations: [HabbitlistComponent,DiaryeditorComponent,DiarylistComponent,DiarydetailComponent,DiaryComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent,DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent,CardComponent],
   imports: [
     SatPopoverModule,
     BrowserAnimationsModule,

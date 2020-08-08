@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { TodoService } from './../../../service/todo.service';
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -54,14 +55,13 @@ export class TodoeditorComponent implements OnInit {
         this.mService.getTodoItemsByTodoId(params.get('idTodo')).subscribe((el:any)=>{
             this.todoItemNiz = el;
             el.forEach((element:any) => {
-              this.niz.push({text:element.Title,checked:false,habbit:false,id:element.id});
+              this.niz.push({text:element.Title,checked:false,habbit:false,id:element.id,item:element});
             });
           
         })
 
         this.mService.getHabbitFromTodoHabbit(params.get('idTodo')).subscribe((el:any)=>{
-                    this.todoHabbitNiz = el;
-                    console.log(el)
+                    this.todoHabbitNiz = el;            
                     el.forEach((element:any) => {
                         this.mService.getHabbitByTodo(element.habbitId).subscribe((ele:any)=>{
                         this.pomHabbitNiz.push(ele)
@@ -210,6 +210,24 @@ export class TodoeditorComponent implements OnInit {
     this.niz.splice(i,1)
   }
 
+  checkIfIsDone()
+  {
+    let br = 0;
+    this.niz.forEach((el:any)=>{
+        if(el.habbit)
+        {
+          if(el.item.Week.charAt(6)==='1'){br++}
+        }
+        else{
+          if(el.item!==undefined)
+          {
+            if(el.item.Status){br++}
+          }
+        }
+    })
+    return br;
+  }
+
   sleep(miliseconds) {
     var currentTime = new Date().getTime();
  
@@ -268,15 +286,25 @@ export class TodoeditorComponent implements OnInit {
             }
             else
             {
-                this.niz.forEach((items:any)=>{
-
+                
+                let flg = false;
+                this.todoHabbitNiz.forEach((item:any)=>{
+                    if(item.todoId===this.todoID.toString()&&el.item.id===item.habbitId)
+                    {
+                      flg = true;
+                    }
                 })
-                let todohabbit={
-                  todoId:this.todoID,
-
-                  habbitId:el.item.id
+                if(!flg)
+                {
+                  let todohabbit={
+                    todoId:this.todoID,
+  
+                    habbitId:el.item.id
+                  }
+          
+                  this.mService.Addnewtodohabbit(todohabbit)
                 }
-                this.mService.Addnewtodohabbit(todohabbit)
+             
             }
         })
 
@@ -311,13 +339,13 @@ export class TodoeditorComponent implements OnInit {
           })
           if(!flag)
           {
-            alert("pera")
             this.mService.deleteTodoItem(el.id)
           }
       })
 
       
       todo.Items = this.niz.length
+      todo.Done = this.checkIfIsDone();
       this.mService.updateTodo(this.id,todo);
     }
 
@@ -347,7 +375,7 @@ export class TodoeditorComponent implements OnInit {
         })
       })
     }
-
+    
     this.router.navigate(['/dashboard/todo'])
   }
 

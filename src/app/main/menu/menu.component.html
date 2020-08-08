@@ -7,8 +7,8 @@
     <div class="container d-flex flex-column ml-2">
       <div class="row h3 sideBarItem" routerLink="/"><p>Home</p></div>
       <div class="row h3 sideBarItem" routerLink="/"><p>Forum</p></div>
-      <div class="row h3 sideBarItem" routerLink="dashboard"><p>Dasboard</p></div>
-      <div class="row h3 sideBarItem" (click)="service.isLoggedIn()?logOut():logIn()"><p>{{service.isLoggedIn()===true?"Odjavi se":"Prijavi se"}}</p></div>
+      <div class="row h3 sideBarItem" routerLink="dashboard/user"><p>Dasboard</p></div>
+      <div class="row h3 sideBarItem" (click)="service.isLoggedIn()?logOut():logIn()"><p>{{service.isLoggedIn()===true?"Log out":"Log in"}}</p></div>
     </div>
 </div>
 
@@ -29,14 +29,14 @@
             <p>Forum</p>
           </div> 
          <div style="color: whitesmoke; cursor: pointer;" class="col-2 menuItem">
-            <p routerLink="dashboard">Dasboard</p>
+            <p routerLink="dashboard/user">Dasboard</p>
          </div> 
         
         <div style="color: whitesmoke; cursor: pointer;"
                 class=" col-2    menuItem"
                     (click)="service.isLoggedIn()?logOut():logIn()"
                 >
-                <p>{{service.isLoggedIn()===true?"Odjavi se":"Prijavi se"}} </p>
+                <p>{{service.isLoggedIn()===true?"Log out":"Log in"}} </p>
         </div>
         <div className="menuRight" class=" col-1 mt-4 menuRight"  >
         
@@ -68,8 +68,8 @@
 
 <!--INROMATION 1-->
 <div class="container mt-5 " >
-  <div class="row h2 d-flex justify-content-center align-items-center mr-5">Kako ovo funkcioniše?</div>
-  <div class="row d-flex justify-content-center align-items-center mr-5">Ova aplikacija je osmišljena kako bi pomogla ljudima da lakše organizuju dan i da zabeleže svoje nezaboravne trenutke </div>
+  <div class="row h2 d-flex justify-content-center align-items-center mr-5">How this works?</div>
+  <div class="row d-flex justify-content-center align-items-center mr-5">This aplication is created to help peoples to easy organise day and track wonderfull moments</div>
   <div class="row d-flex flex-wrap">
     <div style="width: 450px;"  class=" mt-5 ml-4">
         <div class="row d-flex justify-content-between mt-5">
@@ -85,8 +85,8 @@
         <div  class="col-2  border-top border-dark"></div>
         <div clas="col-1"><img style="position: relative; bottom: 27px; left:10px;" src="/assets/menuIcons/1.png" class="img-fluid" /></div>
         <div style="position: relative; left: 30px; bottom: 30px;" class="col-5">
-          <div class="row h3">Registruj se</div>
-          <div style="font-size: 12px; color: gray;" class="row">Klikom na dugme Prijavi se, aplikacija vas vodi gde možete se registrovati ili prijaviti ukoliko već imate nalog.</div>
+          <div class="row h3">Register</div>
+          <div style="font-size: 12px; color: gray;" class="row">Click od button 'Log In', web application will gude you to register page or log in page if you already have account.</div>
         </div>
       </div>
       <div style="height: 140px;" class="row">
@@ -95,7 +95,7 @@
         <div clas="col-1"><img style="position: relative; bottom: 27px; left:10px;" class="img-fluid" src="/assets/menuIcons/2.png" /></div>
         <div style="position: relative; left: 30px; bottom: 30px;" class="col-5">
           <div class="row h3">Forum</div>
-          <div style="font-size: 12px; color: gray;" class="row">Koristi forum da bi razmeni mišljenje sa ostalim korisnicima.</div>
+          <div style="font-size: 12px; color: gray;" class="row">Use forum to share thoughts with other users.</div>
         </div>
       </div>
       <div style="height: 140px;" class="row">
@@ -104,7 +104,7 @@
         <div clas="col-1 mb-5"><img style="position: relative; bottom: 27px; left:10px;" class="img-fluid" src="/assets/menuIcons/3.png" /></div>
         <div style="position: relative; left: 30px; bottom: 30px;" class="col-5">
           <div class="row h3">Todo</div>
-          <div style="font-size: 12px; color: gray;" class="row desc">ToDo lista je jedan od najboljih načina da se organizuje vreme.</div>
+          <div style="font-size: 12px; color: gray;" class="row desc">ToDo list is one of the best way to organise time.</div>
         </div>
       </div>
       <div style="height: 140px;" class="row">
@@ -112,9 +112,9 @@
         <div class="col-1 border-top border-dark"></div>
         <div clas="col-1" ><img style="position: relative; bottom: 27px; left:10px;" class="img-fluid" src="/assets/menuIcons/4.png" /></div>
         <div style="position: relative; left: 30px; bottom: 30px;" class="col-5">
-          <div class="row h3">Navike</div>
-          <div style="font-size: 12px; color: gray;" class="row">Imate neku naviku koju bi ste hteli da steknete, ova aplikaciju vam pomaže u tome.</div>
-        </div>
+          <div class="row h3">Habbits</div>
+          <div style="font-size: 12px; color: gray;" class="row">You want to acquire some new habbit, this web application will help you to achieve that.</div>
+        </div> 
       </div>
     </div> 
     </div>
@@ -125,7 +125,7 @@
 
 <div style="background-color: #f7f8f9;" class="whyBeDoHaveContainer"  class="container-fluid whyBeDoHaveContainer">
   <div class="row d-flex justify-content-center align-items-center  ">
-    <h2 class="mt-4">Zašto baš BeDo<span style="color: royalblue;">Have</span>?</h2>
+    <h2 class="mt-4">Why BeDo<span style="color: royalblue;">Have</span>?</h2>
   </div>
   <div style="height: 400px;" className="whyBeDoHaveContainer" class="container mt-5 whyBeDoHaveContainer">
     <div class="row d-flex justify-content-center align-items-center">
@@ -135,22 +135,22 @@
           <div class="col-6">
               <div class="row">
                 <div class="col-1 "><img src="/assets/whyBeDoHave/4.png" /></div>
-                <div class="col-11 h5 mt-1">Dodavanje komentara</div>
+                <div class="col-11 h5 mt-1">Adding comments</div>
               </div>
               <div class="row">
                 <div class="col-1"></div>
-                <div class="col-11"><p style="color: gray; font-size: 12px;">Dodavanje komentara i razmenom mišljenja može se steći neko novo iskustvo</p></div>
+                <div class="col-11"><p style="color: gray; font-size: 12px;">Adding comments and share thaughts with other users can help you to get some new expirience</p></div>
               </div>
               
           </div>
           <div class="col-6">
             <div class="row">
               <div class="col-1 "><img src="/assets/whyBeDoHave/1.png" /></div>
-              <div class="col-11 h5 mt-1">Todo Lista</div>
+              <div class="col-11 h5 mt-1">Todo List</div>
             </div>
             <div class="row">
               <div class="col-1"></div>
-              <div class="col-11"><p style="color: gray; font-size: 12px;">Iskoristi dan maksimalno uz pomoć našu ToDo listu i čekiraj šta si sve završio</p></div>
+              <div class="col-11"><p style="color: gray; font-size: 12px;">'Carpet diem' with our ToDo list and check everything what are you done thru day</p></div>
             </div>
           </div>
         </div>
@@ -159,11 +159,11 @@
             <div class="col-6 ">
                 <div class="row">
                   <div class="col-1 "><img src="/assets/whyBeDoHave/2.png" /></div>
-                  <div class="col-11 h5 mt-1">Navike</div>
+                  <div class="col-11 h5 mt-1">Habbits</div>
                 </div>
                 <div class="row ">
                   <div class="col-1"></div>
-                  <div class="col-11"><p style="color: gray; font-size: 12px;">Stekni neku novu naviku koji si hteo već dugi vremenski period</p></div>
+                  <div class="col-11"><p style="color: gray; font-size: 12px;">Get some new habbits that you want certain amount of time.</p></div>
                 </div>
                 
             </div>
@@ -174,7 +174,7 @@
               </div>
               <div class="row">
                 <div class="col-1"></div>
-                <div class="col-11"><p style="color: gray; font-size: 12px;">Zabeleži svaki svoj dan na jednom mestu</p></div>
+                <div class="col-11"><p style="color: gray; font-size: 12px;">Track your day, all in one place</p></div>
               </div>
             </div>
         </div>
@@ -190,6 +190,6 @@
 
 <!--FOOTER-->
 <div style="background-color: black; height: 70px;" class="d-flex justify-content-center align-items-center ">
-    <p class="mt-3" style="color: gray;">Copyright © <span style="color: white;">BeDo</span><span style="color: royalblue;">Have</span>. Sva prava zadržana.</p>
+    <p class="mt-3" style="color: gray;">Copyright © <span style="color: white;">BeDo</span><span style="color: royalblue;">Have</span>. All rights reserved.</p>
 </div>
 <!--END OF FOOTER-->

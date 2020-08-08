@@ -1,5 +1,5 @@
 import { DashboardModule } from './dashboard/dashboard.module';
-import { UserModule } from './user/user.module';
+
 import { FormsModule } from '@angular/forms';
 import { MainModule } from './main/main.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,7 +27,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     FormsModule,
     MainModule,
     SimpleModalModule,
-    UserModule,
     DashboardModule,
     RouterModule.forRoot([
       {path:'login', component:LoginComponent},

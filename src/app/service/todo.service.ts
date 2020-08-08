@@ -55,12 +55,12 @@ export class TodoService {
   updateTodo(id,todo)
   {
 
-    this.http.put(URL+"/todo/"+id,todo).subscribe((el:any)=>{console.log(el)})
+    this.http.put(URL+"/todo/"+id,todo).subscribe((el:any)=>{})
   }
 
   updateTodoItem(id, todoitem)
   {
-      this.http.put(URL+"/todoitem/"+id,todoitem).subscribe((el:any)=>{console.log(el)})
+      this.http.put(URL+"/todoitem/"+id,todoitem).subscribe((el:any)=>{})
   }
 
   getTodoHabbitAndDelete(idTodo,idHabbit)
@@ -103,4 +103,8 @@ export class TodoService {
     this.http.delete(URL+"/todohabbit/"+id).subscribe((el:any)=>{console.log(el)})
   }
    
+  getLastTodo(id)
+  {
+    return this.http.get(URL+"/todo?userId="+id+"&_sort=id&_order=desc&_limit=1")
+  }
 }

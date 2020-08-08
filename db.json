@@ -51,18 +51,11 @@
   ],
   "diary": [
     {
-      "Date": "2020-08-04",
-      "Title": "Ponedeljak",
-      "Text": "Today was a good day!",
+      "Date": "2020-08-09",
+      "Title": "Monday",
+      "Text": "aaa",
       "userId": "3",
       "id": 1
-    },
-    {
-      "Date": "2020-08-05",
-      "Title": "Sreda",
-      "Text": "SDasd",
-      "userId": "3",
-      "id": 3
     }
   ],
   "habbit": [
@@ -72,8 +65,8 @@
       "SpecificTimesFlag": false,
       "SpecificDaysInWeekFlag": false,
       "SpecificDaysInMonthFlag": false,
-      "Week": "0001101",
-      "WeekDay": "08/07/2020",
+      "Week": "0110100",
+      "WeekDay": "08/09/2020",
       "Date": "2020-08-06",
       "Title": "EveryDay",
       "userId": "3",
@@ -86,8 +79,8 @@
       "SpecificTimesFlag": true,
       "SpecificDaysInWeekFlag": false,
       "SpecificDaysInMonthFlag": false,
-      "Week": "0001111",
-      "WeekDay": "08/07/2020",
+      "Week": "0111100",
+      "WeekDay": "08/09/2020",
       "Date": "2020-08-06",
       "Title": "SpecificTimeInWeek",
       "userId": "3",
@@ -100,8 +93,8 @@
       "SpecificTimesFlag": false,
       "SpecificDaysInWeekFlag": true,
       "SpecificDaysInMonthFlag": false,
-      "Week": "0011110",
-      "WeekDay": "08/07/2020",
+      "Week": "1111000",
+      "WeekDay": "08/09/2020",
       "Date": "2020-08-06",
       "Title": "SpecificDayInWeek",
       "userId": "3",
@@ -114,8 +107,8 @@
       "SpecificTimesFlag": false,
       "SpecificDaysInWeekFlag": false,
       "SpecificDaysInMonthFlag": true,
-      "Week": "0012210",
-      "WeekDay": "08/07/2020",
+      "Week": "1221000",
+      "WeekDay": "08/09/2020",
       "Date": "2020-08-06",
       "Title": "SpecificDaysInMonth",
       "userId": "3",
@@ -128,8 +121,8 @@
       "SpecificTimesFlag": true,
       "SpecificDaysInWeekFlag": false,
       "SpecificDaysInMonthFlag": false,
-      "Week": "0000011",
-      "WeekDay": "08/07/2020",
+      "Week": "0001110",
+      "WeekDay": "08/09/2020",
       "Date": "2020-08-06",
       "Title": "Proba",
       "userId": "3",
@@ -142,8 +135,8 @@
       "SpecificTimesFlag": false,
       "SpecificDaysInWeekFlag": false,
       "SpecificDaysInMonthFlag": false,
-      "Week": "1000001",
-      "WeekDay": "08/07/2020",
+      "Week": "0000011",
+      "WeekDay": "08/08/2020",
       "Date": "2020-08-07",
       "Title": "Get up in 5am",
       "userId": "5",
@@ -195,24 +188,30 @@
       "Date": "2020-08-09",
       "Note": "Nije neki",
       "Estimate": 0,
-      "Done": 2,
-      "Items": 2,
+      "Done": 3,
+      "Items": 3,
       "userId": "3",
       "id": 1
     }
   ],
   "todoitem": [
     {
-      "Title": "Get up and don't ever give up!",
-      "Status": true,
-      "todoId": 1,
-      "id": 1
+      "Title": "Dodaj todo",
+      "Status": false,
+      "todoId": "1",
+      "id": 2
+    },
+    {
+      "Title": "Neki Task",
+      "Status": false,
+      "todoId": "1",
+      "id": 3
     }
   ],
   "todohabbit": [
     {
-      "todoId": 1,
-      "habbitId": 2,
+      "todoId": "1",
+      "habbitId": 5,
       "id": 1
     }
   ]
