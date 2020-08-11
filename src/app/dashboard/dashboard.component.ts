@@ -1,7 +1,16 @@
+import { map,take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ResizedEvent } from 'angular-resize-event';
 import {AuthenticationService }from '../service/authentication.service';
 import {Router} from '@angular/router'
+import {GetUser} from './ngrx/actions/user.actions'
+import {Store} from '@ngrx/store';
+import {User} from './ngrx/model/user.model';
+import * as userActions from './ngrx/actions/user.actions';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
+
+import {AppState} from './ngrx/app.state'
 
 @Component({
   selector: 'app-dashboard',
@@ -10,14 +19,29 @@ import {Router} from '@angular/router'
 })
 
 export class DashboardComponent implements OnInit{
-  constructor(private service: AuthenticationService,private router:Router) { }
+
+  user1: Observable<User>
+  constructor(private service: AuthenticationService,private router:Router, private store: Store<AppState>) {
+      
+   }
   user: any;
   urlRoute:string  = ""
   ngOnInit(): void {
-  
-    this.service.getUserById(this.service.getUser().sub).subscribe(response =>{this.user = response})
+
+    //this.service.getUserById(this.service.getUser().sub).subscribe(response =>{this.user = response})
     this.urlRoute = window.location.href
-   
+    this.store.dispatch(new GetUser(this.service.getUser().sub));
+    this.user1 = this.store.select('user');
+    this.user1.subscribe(data=>this.user = data)
+  }
+
+  loadUser()
+  {
+    this.user = {}
+    
+    
+    
+  
   }
   
   pomWidth

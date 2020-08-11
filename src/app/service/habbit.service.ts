@@ -67,7 +67,7 @@ export class HabbitService {
 
   getAllHabbit()
   {
-    
+    return this.http.get(URL+"/habbit")
   }
    
 

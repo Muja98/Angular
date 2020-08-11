@@ -1,3 +1,4 @@
+import { UserEffects } from './ngrx/effects/user.effects';
 import { CardComponent } from './user/card/card.component';
 import { DiaryeditorComponent } from './diary/diaryeditor/diaryeditor.component';
 
@@ -24,6 +25,13 @@ import { AngularResizedEventModule } from 'angular-resize-event';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SatPopoverModule } from '@ncstate/sat-popover';
+import  {userReducer} from './ngrx/reducers/user.reducers'
+//NGRX
+
+import {EffectsModule} from '@ngrx/effects';
+import {StoreModule, Store} from '@ngrx/store';
+
+
 @NgModule({
   declarations: [HabbitlistComponent,DiaryeditorComponent,DiarylistComponent,DiarydetailComponent,DiaryComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent,DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent,CardComponent],
   imports: [
@@ -33,6 +41,10 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
     CommonModule,
     NgbPaginationModule,
     FormsModule,
+    StoreModule.forRoot({
+      user:userReducer
+    }),
+    EffectsModule.forRoot([UserEffects]),
     AngularResizedEventModule,
     RouterModule.forRoot([
       {path:'dashboard', component:DashboardComponent,
