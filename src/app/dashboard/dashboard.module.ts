@@ -30,7 +30,7 @@ import  {userReducer} from './ngrx/reducers/user.reducers'
 
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule, Store} from '@ngrx/store';
-
+import {itemReducer} from './ngrx/reducers/item.reducers'
 
 @NgModule({
   declarations: [HabbitlistComponent,DiaryeditorComponent,DiarylistComponent,DiarydetailComponent,DiaryComponent, HabbitdetailComponent, HabbiteditorComponent, HabbitComponent,DashboardComponent, UserComponent, TodoComponent, TodoeditorComponent, TodolistComponent, TododetailComponent,CardComponent],
@@ -42,7 +42,7 @@ import {StoreModule, Store} from '@ngrx/store';
     NgbPaginationModule,
     FormsModule,
     StoreModule.forRoot({
-      user:userReducer
+      user:userReducer, item:itemReducer
     }),
     EffectsModule.forRoot([UserEffects]),
     AngularResizedEventModule,

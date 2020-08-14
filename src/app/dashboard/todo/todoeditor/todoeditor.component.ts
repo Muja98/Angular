@@ -6,12 +6,22 @@ import { AuthenticationService } from './../../../service/authentication.service
 import { HabbitService } from './../../../service/habbit.service';
 
 import {Router, ActivatedRoute} from '@angular/router'
+
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as actions from '../../ngrx/actions/item.actions';
+import * as fromItem from '../../ngrx/reducers/item.reducers';
+import { Actions } from '@ngrx/effects';
+
+
 @Component({
   selector: 'app-todoeditor',
   templateUrl: './todoeditor.component.html',
   styleUrls: ['./todoeditor.component.css']
 })
 export class TodoeditorComponent implements OnInit {
+
+  items: Observable<any>
 
   title:string = "";
   date:string  = "";
@@ -28,14 +38,22 @@ export class TodoeditorComponent implements OnInit {
     note: "",
     task: ""
   }
+  globalId = "";
   todoItemNiz = [];
   closeResult = '';
   editFlag:boolean = false;
-  constructor(private modalService: NgbModal,private service:HabbitService,private aservice:AuthenticationService,private mService:TodoService, private router:Router , private aroute:ActivatedRoute) {}
+  storeFlag:boolean=false;
+
+
+  constructor(private store: Store<fromItem.State>,private modalService: NgbModal,private service:HabbitService,private aservice:AuthenticationService,private mService:TodoService, private router:Router , private aroute:ActivatedRoute) {
+  }
   todoHabbitNiz = [];
   pomHabbitNiz = [];
 
+  firstTimeLoaded = false;
+
   ngOnInit(): void {
+    this.items = this.store.select(fromItem.selectAll)
 
     this.aroute.paramMap.subscribe(params=>{
       if(params.get('idTodo')!=='newtodo')
@@ -70,7 +88,29 @@ export class TodoeditorComponent implements OnInit {
             });
         })
      }
+     else
+     {
+      this.items.subscribe((el:any)=>{
+        if(!this.storeFlag)
+        {
+          el.forEach(element => {
+          this.niz.push({id:element.id,text:element.text,checked:false,habbit:false})
+          this.globalId = element.id
+          
+          let pom2 = parseInt(this.globalId) +0;
+          pom2++;
+        
+          this.globalId = pom2.toString();
+         
+        });
+        this.storeFlag=true;
+        }
+        
+      })
+     }
     })
+
+   
 
     
     this.sleep(200)
@@ -117,7 +157,15 @@ export class TodoeditorComponent implements OnInit {
 
   }
 
-  
+  loguj()
+  {
+    this.items.subscribe(x=>{console.log(x)})
+  }
+
+  obrisiStore()
+  {
+    this.store.dispatch(new actions.DeleteAll())
+  }
 
   checkSpecificDayInWeek(item)
   { 
@@ -142,11 +190,25 @@ export class TodoeditorComponent implements OnInit {
   }
 
   open(item,index) {
-    this.updateItem = item
-    this.pom = item.text;
-    this.pomIndex= index
-    this.niz[index].checked = true;
-    this.publickChecked = true;
+
+    if(item.id!==undefined)
+    {
+      this.updateItem = item;
+      this.pom = item.text;
+      this.pomIndex = index;
+      this.niz[index].checked = true;
+      this.publickChecked = true;
+    
+    }
+    else
+    {
+      this.updateItem = item
+      this.pom = item.text;
+      this.pomIndex= index
+      this.niz[index].checked = true;
+      this.publickChecked = true;
+    }
+    this.pomForStore = item.text;
 
   }
 
@@ -159,9 +221,28 @@ export class TodoeditorComponent implements OnInit {
 
   handleEditTask()
   {
+    
+    
       this.niz[this.pomIndex] = this.updateItem;
       this.niz[this.pomIndex].checked = false;
       this.publickChecked = false
+
+      var pom;
+    this.items.subscribe((x:any)=>{
+
+      x.forEach(element => {
+    
+          if(element.text===this.pomForStore){pom = element}
+      });
+    } )
+
+
+      if(pom!==undefined && pom.id!==undefined)
+      {
+        this.store.dispatch(new actions.Update(pom.id, {text:this.niz[this.pomIndex].text}))
+      }
+
+
   }
 
   
@@ -173,7 +254,9 @@ export class TodoeditorComponent implements OnInit {
   public updateItem :any = "";
   public pomIndex :number
   public pom : any;
-  public publickChecked:boolean = false;;
+  public publickChecked:boolean = false;
+  public pomForStore:string;
+
   handleCancel()
   {
     this.flag = false;
@@ -184,9 +267,23 @@ export class TodoeditorComponent implements OnInit {
     this.todoItemText = "";
     this.flag = true;
   }
+
   
   handleAddTask()
   {
+    if(this.globalId===""){this.globalId="1"}
+    const item: fromItem.Item = {
+      id:this.globalId,
+      text: this.todoItemText,
+      checked:false,
+      habbit:false
+    }
+ 
+    let pom2 = parseInt(this.globalId) + 0;
+    pom2++;
+    this.globalId = pom2.toString();
+    this.store.dispatch(new actions.Create(item ))
+    
     this.niz.push({text:this.todoItemText,checked:false,habbit:false});
     this.todoItemText = "";
     this.flag = false;
@@ -206,6 +303,20 @@ export class TodoeditorComponent implements OnInit {
     {
       this.habbitniz.push(this.niz[i].item)
     }
+
+    var pom;
+    this.items.subscribe((x:any)=>{
+
+      x.forEach(element => {
+    
+          if(element.text===this.niz[i].text){pom = element}
+      });
+     } )
+    if(pom!==undefined && pom.id!==undefined)
+    {
+      this.store.dispatch(new actions.Delete(pom.id ))
+    }
+  
 
     this.niz.splice(i,1)
   }
@@ -258,6 +369,7 @@ export class TodoeditorComponent implements OnInit {
 
     if(this.editFlag)//UPDATE
     {
+ 
       this.niz.forEach((el:any)=>{
             if(!el.habbit)
             {
@@ -277,11 +389,7 @@ export class TodoeditorComponent implements OnInit {
                     Status:false,
                     todoId:this.todoID
                   }
-                  //let pom = this.niz.filter((x:any)=>x.habbit==true && x.item.Title==el.text)
-                 
                     this.mService.AddnewTodoItem(todoItem)
-                  
-                  
                 }
             }
             else
@@ -352,6 +460,7 @@ export class TodoeditorComponent implements OnInit {
     else//NEW
     {
       this.mService.addNewTodo(todo).subscribe( (res:any)=>{
+        console.log(res)
         this.niz.forEach((item:any)=>{
           this.sleep(200)
           if(item.habbit)
@@ -375,7 +484,7 @@ export class TodoeditorComponent implements OnInit {
         })
       })
     }
-    
+    this.store.dispatch(new actions.DeleteAll())
     this.router.navigate(['/dashboard/todo'])
   }
 

@@ -49,7 +49,7 @@ export class DiaryService {
 
   getLastDiary(id)
   {
-      return this.http.get(URL+"/diary?_sort=id&_order=desc&_limit=1")
+      return this.http.get(URL+"/diary?userId="+id+"&_sort=id&_order=desc&_limit=1")
   }
 
 

@@ -14,7 +14,7 @@ export class TodoService {
 
   addNewTodo(todo)
   {
-    return this.http.post(URL+'/todo', todo)
+    return this.http.post(URL+'/todo', todo);
   }
 
   AddnewTodoItem(todoItem)

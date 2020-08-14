@@ -1,8 +1,8 @@
 <!-- <button (click)="logujUsera()">Butonce</button> -->
 <div class="container d-flex justify-content-between ">
-    <app-card *ngIf="Todo!==undefined" [title]="'Latest Todo'" [text]="Todo[0].Title" [id]="Todo[0].id" [type]='1' (change)="redirect($event)" ></app-card>
-    <app-card *ngIf="Habbit!==undefined" [title]="'Latest Habbit'" [text]="Habbit[0].Title" [id]="Habbit[0].id" [type]='2' (change)="redirect($event)"></app-card>
-    <app-card *ngIf="Diary.length>0!" [title]="'Latest Diary'" [text]="Diary[0].Title" [id]="Diary[0].id" [type]='3' (change)="redirect($event)" ></app-card>
+    <app-card *ngIf="Todo!==undefined && Todo.length>0" [title]="'Latest Todo'" [text]="Todo[0].Title" [id]="Todo[0].id" [type]='1' (change)="redirect($event)" ></app-card>
+    <app-card *ngIf="Habbit!==undefined  && Habbit.length>0" [title]="'Latest Habbit'" [text]="Habbit[0].Title" [id]="Habbit[0].id" [type]='2' (change)="redirect($event)"></app-card>
+    <app-card *ngIf="Diary!== undefined && Diary.length>0!" [title]="'Latest Diary'" [text]="Diary[0].Title" [id]="Diary[0].id" [type]='3' (change)="redirect($event)" ></app-card>
 </div>
 
 <div class="conteiner-sm ml-1">

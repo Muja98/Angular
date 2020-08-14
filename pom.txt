@@ -9,3 +9,5 @@ npm i ngx-smart-modal --save
 npm install ngx-simple-modal
 
 npm install @ngrx/store --save
+npm install @ngrx/effects --save
+npm install @ngrx/entity --save

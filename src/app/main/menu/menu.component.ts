@@ -51,7 +51,7 @@ export class MenuComponent  {
     this.service.logout();
   }
 
-  niz1 = ['Make your plan','Make new habbits','Write a diart']
+  niz1 = ['Make your plan','Make new habbits','Write a diary']
   niz2 = ['Manage your day with todo list.','Create new habbit with tracking it every day.','Write a diary and share taugts with others.']
 
    w3_open() {

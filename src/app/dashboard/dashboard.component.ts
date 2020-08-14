@@ -27,7 +27,10 @@ export class DashboardComponent implements OnInit{
   user: any;
   urlRoute:string  = ""
   ngOnInit(): void {
-
+    if(!this.service.isLoggedIn())
+    {
+      this.router.navigate(['/'])
+    }
     //this.service.getUserById(this.service.getUser().sub).subscribe(response =>{this.user = response})
     this.urlRoute = window.location.href
     this.store.dispatch(new GetUser(this.service.getUser().sub));
@@ -38,10 +41,6 @@ export class DashboardComponent implements OnInit{
   loadUser()
   {
     this.user = {}
-    
-    
-    
-  
   }
   
   pomWidth

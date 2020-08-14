@@ -37,7 +37,6 @@ export class DiaryeditorComponent implements OnInit {
         if(this.editFlag==true)
         {
           let diary={
-
             Date:this.date,
             Title:this.title,
             Text:this.text,
@@ -56,7 +55,6 @@ export class DiaryeditorComponent implements OnInit {
           } 
           this.service.AddnewDiary(diary)
         }
-     
         this.router.navigate(['/dashboard/diary'])
     }
   }

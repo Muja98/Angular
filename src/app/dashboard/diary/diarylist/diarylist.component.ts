@@ -2,6 +2,11 @@ import { DiaryService } from './../../../service/diary.service';
 import {AuthenticationService }from './../../../service/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
+import { Observable } from 'rxjs';
+import {User} from '../../ngrx/model/user.model';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../ngrx/app.state'
+
 @Component({
   selector: 'app-diarylist',
   templateUrl: './diarylist.component.html',
@@ -9,10 +14,11 @@ import {Router} from '@angular/router'
 })
 export class DiarylistComponent implements OnInit {
 
-  constructor(private service: DiaryService, private aserice: AuthenticationService,private router:Router) { }
+  constructor(private store: Store<AppState>,private service: DiaryService, private aserice: AuthenticationService,private router:Router) { }
   niz: any =  []
   pomniz: any = []
   user : any;
+  user1: Observable<User>;
   dateSearch: string = "";
   itemsPerPage:number = 5;
   itemsCount:number = 0;
@@ -26,11 +32,8 @@ export class DiarylistComponent implements OnInit {
 
   getAll()
   {
-     
-    this.aserice.getUserById(this.aserice.getUser().sub).subscribe(
-      response =>{this.user = response}
-    )
-
+    this.user1 = this.store.select('user');
+    this.user1.subscribe(data=>this.user = data)
     this.service.getDiaryById(this.aserice.getUser().sub).subscribe(
         response =>{this.niz = response
                     this.itemsCount = this.niz.length}
@@ -39,15 +42,18 @@ export class DiarylistComponent implements OnInit {
 
   handleSearch()
   {
-    if(this.dateSearch==""){
+    if(this.dateSearch=="")
+    {
       this.getAll();
     }
+
     this.service.getDiaryByDate(this.dateSearch).subscribe(
       response=>{
         this.niz = [];
         this.niz = response;
       }
     )
+
   }
 
   setValue(value)
@@ -61,8 +67,6 @@ export class DiarylistComponent implements OnInit {
     {
       this.niz.sort((a,b)=>Date.parse(a.Date)-Date.parse(b.Date))
     }
-    
-    //activities.sort((a, b) => b.date - a.date)
   }
   
   handlePageNumber=(pageNumber)=>{
@@ -74,8 +78,6 @@ export class DiarylistComponent implements OnInit {
         if(pageNumber === Math.floor(this.itemsCount / this.itemsPerPage) + 1) {
           this.from = (pageNumber-1)*this.itemsPerPage;
           this.to = this.from+(this.itemsCount-this.from);
-           
-
         } else {
           this.from = (pageNumber - 1) * this.itemsPerPage;
           this.to = this.from + this.itemsPerPage;
@@ -94,5 +96,4 @@ export class DiarylistComponent implements OnInit {
   {
     this.router.navigate(["dashboard/diary/"+id])
   }
-
 }
